@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 2.5rem;
+    background: #3590F3;
+}
+
+.nav {
+    width: 20%;
+
+    .list {
+        display: flex;
+        justify-content: space-evenly;
+        list-style-type: none;
+
+        .item {
+            font-size: 1.25rem;
+
+            .link {
+                color: #fbfbfb;
+                text-decoration: none;
+            }
+        }
+    }
+}

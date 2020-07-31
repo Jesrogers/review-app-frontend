@@ -10,19 +10,19 @@ function App() {
   return (
     <Router>
       <Header />
-
-      <Switch>
-        <Route exact path="/">
-          <Reviews />
-        </Route>
-        <Route path="/review">
-          <ReviewForm />
-        </Route>
-        <Route path="/summary">
-          <Summary />
-        </Route>
-      </Switch>
-
+      <main>
+        <Switch>
+          <Route exact path="/">
+            <Reviews />
+          </Route>
+          <Route path="/review">
+            <ReviewForm />
+          </Route>
+          <Route path="/summary">
+            <Summary />
+          </Route>
+        </Switch>
+      </main>
       <Footer />
     </Router>
   );
