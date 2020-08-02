@@ -18,6 +18,11 @@ body {
   box-sizing: inherit;
 }
 
+main {
+  height: calc(100vh - 5rem);
+  min-height: 37.5rem;
+}
+
 h1 {
   font-size: 2.5rem;
   color: #fbfbfb;
