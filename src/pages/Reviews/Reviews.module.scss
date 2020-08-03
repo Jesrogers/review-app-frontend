@@ -3,6 +3,11 @@
     background: linear-gradient(90deg, rgba(232, 232, 232, 1) 0%, rgba(251, 251, 251, 1) 50%, rgba(232, 232, 232, 1) 100%);
 
     &__content {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+        padding: 1.75em;
         position: relative;
         height: 100%;
         max-width: 75rem;

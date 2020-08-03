@@ -9,14 +9,10 @@ const Header = () => {
       <nav className={styles.nav}>
         <ul className={styles.list}>
           <li className={styles.item}>
-            <Link to="/" className={styles.link}>
-              Reviews
-            </Link>
+            <Link to="/">Reviews</Link>
           </li>
           <li className={styles.item}>
-            <Link to="/summary" className={styles.link}>
-              Summary
-            </Link>
+            <Link to="/summary">Summary</Link>
           </li>
         </ul>
       </nav>

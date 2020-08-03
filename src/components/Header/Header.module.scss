@@ -18,9 +18,15 @@
         .item {
             font-size: 1.25rem;
 
-            .link {
+            a {
+                padding: .3em .5em;
                 color: #fbfbfb;
                 text-decoration: none;
+
+                &:hover,
+                &:active {
+                    background: #d5d5d55c;
+                }
             }
         }
     }

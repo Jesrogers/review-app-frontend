@@ -1,0 +1,29 @@
+.reviewCard {
+    display: flex;
+    flex-direction: column;
+    flex: 0 1 100%;
+    box-shadow: 0 0.3em 0.8em rgba(0, 0, 0, 0.15);
+    border-radius: 0.2em;
+
+    @media screen and (min-width: 37.5em) {
+        flex: 0 1 calc(50% - 2em);
+    }
+
+    @media screen and (min-width: 62.5em) {
+        flex: 0 1 calc(33% - 2em);
+    }
+
+    header {
+        background: lightblue;
+        border-top-left-radius: 0.2em;
+        border-top-right-radius: 0.2em;
+        padding: 0.5em 0.75em;
+    }
+
+    &__content {
+        min-height: 12.5rem;
+        padding: 0.5em 0.75em;
+    }
+
+    footer {}
+}
