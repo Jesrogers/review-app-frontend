@@ -10,8 +10,12 @@ const ReviewCard = ({ review }) => {
       <div className={styles.reviewCard__content}>
         <p>{review.description}</p>
       </div>
-      <footer>
-        
+      <footer className={styles.reviewCard__footer}>
+        <p>Rating Stars</p>
+        <div className={styles.reviewCard__footerActions}>
+          <span className="far fa-edit"></span>
+          <span className="fas fa-trash"></span>
+        </div>
       </footer>
     </article>
   );

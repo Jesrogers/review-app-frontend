@@ -25,5 +25,12 @@
         padding: 0.5em 0.75em;
     }
 
-    footer {}
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.25em 0.5em;
+        background: #add8e6;
+
+        &Actions {}
+    }
 }

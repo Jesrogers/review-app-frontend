@@ -7,9 +7,12 @@ const ReviewSectionFilters = () => {
       <input type="text" placeholder="Search by review or category..." />
 
       <div>
-        <span className="far fa-window-maximize"></span>
-
-        <span className="fas fa-bars"></span>
+        <button>
+          <span className="far fa-window-maximize"></span>
+        </button>
+        <button>
+          <span className="fas fa-bars"></span>
+        </button>
       </div>
     </div>
   );

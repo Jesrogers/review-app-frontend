@@ -14,10 +14,12 @@
         border-radius: 4px;
     }
 
-    span {
+    button {
         color: #fbfbfb;
         padding: 0.6em;
         cursor: pointer;
+        background: none;
+        border: 0;
 
         &:hover,
         &:active {

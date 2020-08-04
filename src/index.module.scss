@@ -19,6 +19,10 @@ body {
   box-sizing: inherit;
 }
 
+*:focus {
+  outline: 1px solid #fbfbfb;
+}
+
 main {
   min-height: 37.5rem;
 }
