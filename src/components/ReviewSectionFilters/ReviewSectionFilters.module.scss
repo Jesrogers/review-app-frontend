@@ -20,6 +20,7 @@
         cursor: pointer;
         background: none;
         border: 0;
+        border-radius: 4px;
 
         &:hover,
         &:active {
@@ -30,7 +31,11 @@
         &:not(:last-child) {
             margin-right: 2em;
         }
-    }
 
+        &.active {
+            color: #2b2b2b;
+            background: #d5d5d55c;
+        }
+    }
 
 }
