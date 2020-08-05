@@ -1,20 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Reviews.module.scss';
 import NoReviewsMessage from '../../components/NoReviewsMessage/NoReviewsMessage';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import ReviewSectionFilters from '../../components/ReviewSectionFilters/ReviewSectionFilters';
 
-const Reviews = ({ reviews }) => {
-  const [rowLayout, setRowLayout] = useState(false);
+const Reviews = ({
+  rowLayout,
+  reviews,
+  handleRowLayoutChange,
+  handleCardLayoutChange,
+}) => {
   const layoutClass = rowLayout ? styles.rows : styles.cards;
-
-  const handleRowLayoutChange = () => {
-    setRowLayout(true);
-  };
-
-  const handleCardLayoutChange = () => {
-    setRowLayout(false);
-  };
 
   return (
     <section className={styles.reviewSection}>

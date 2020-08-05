@@ -31,6 +31,15 @@ let reviewArray = [
 
 const App = () => {
   const [reviews, setReviews] = useState(reviewArray);
+  const [rowLayout, setRowLayout] = useState(false);
+
+  const handleRowLayoutChange = () => {
+    setRowLayout(true);
+  };
+
+  const handleCardLayoutChange = () => {
+    setRowLayout(false);
+  };
 
   return (
     <Router>
@@ -38,7 +47,12 @@ const App = () => {
       <main>
         <Switch>
           <Route exact path="/">
-            <Reviews reviews={reviews} />
+            <Reviews
+              reviews={reviews}
+              rowLayout={rowLayout}
+              handleRowLayoutChange={handleRowLayoutChange}
+              handleCardLayoutChange={handleCardLayoutChange}
+            />
           </Route>
           <Route path="/review">
             <ReviewForm />
