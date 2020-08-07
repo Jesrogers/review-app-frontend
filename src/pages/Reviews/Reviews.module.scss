@@ -2,8 +2,12 @@
     height: 100%;
     max-width: 75rem;
     margin: 0 auto;
-    padding: 1.75em;
+    padding: 1em;
     background: #fbfbfb;
+
+    @media screen and (min-width: 37.5em) {
+        padding: 1.75em;
+    }
 
     >header {
         margin-bottom: 1.25rem;
@@ -20,11 +24,12 @@
     }
 }
 
-.cards {
+:global(.cards) {
     flex-flow: row wrap;
     align-items: flex-start;
 }
 
-.rows {
+:global(.rows) {
     flex-flow: column wrap;
+    justify-content: flex-start;
 }

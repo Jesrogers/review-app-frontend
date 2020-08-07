@@ -10,7 +10,7 @@ const Reviews = ({
   handleRowLayoutChange,
   handleCardLayoutChange,
 }) => {
-  const layoutClass = rowLayout ? styles.rows : styles.cards;
+  const layoutClass = rowLayout ? 'rows' : 'cards';
 
   return (
     <section className={styles.reviewSection}>

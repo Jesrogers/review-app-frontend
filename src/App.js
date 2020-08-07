@@ -15,7 +15,7 @@ let reviewArray = [
   },
   {
     title: 'Example Food',
-    description: "Didn't taste good",
+    description: "Didn't taste good.",
     rating: 2,
     category: 1,
     id: 2,
