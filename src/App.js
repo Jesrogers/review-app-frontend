@@ -10,21 +10,18 @@ let reviewArray = [
     title: 'Example Movie',
     description: 'What a great movie. The story was amazing.',
     rating: 5,
-    category: 2,
     id: 1,
   },
   {
     title: 'Example Food',
     description: "Didn't taste good.",
     rating: 2,
-    category: 1,
     id: 2,
   },
   {
     title: 'Example Location',
     description: 'A very nice vacation spot.',
     rating: 4,
-    category: 3,
     id: 3,
   },
 ];

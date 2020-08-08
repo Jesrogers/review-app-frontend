@@ -8,7 +8,7 @@ const ReviewSectionFilters = ({
 }) => {
   return (
     <div className={styles.reviewSectionFilters}>
-      <input type="text" placeholder="Search by review or category..." />
+      <input type="text" placeholder="Search by review..." />
 
       <div className={styles.reviewSectionFilters__buttonContainer}>
         <button

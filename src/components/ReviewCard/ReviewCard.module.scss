@@ -21,18 +21,18 @@
     &__footer {
         display: flex;
         justify-content: space-between;
-        padding: 0.25em 0.5em;
+        align-items: center;
+        padding: 0.5em 0.75em;
         background: #add8e6;
 
         &__actions {
-            padding-right: 0.5em;
 
             button {
                 padding: 0.6em;
                 cursor: pointer;
                 background: none;
                 border: 0;
-                transition: all .3s;
+                transition: color .3s, background .3s;
                 border-radius: 4px;
 
                 &:hover,
@@ -73,17 +73,34 @@
         flex-wrap: wrap;
         justify-content: space-between;
 
+        @media screen and (min-width: 37.5em) {
+            flex-wrap: nowrap;
+        }
+
         >header {
-            flex: 1 1;
+            flex: 1 1 30%;
         }
 
         &__content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 0.5em 0.75em;
             flex: 1 1 100%;
         }
 
-        >footer {
-            flex: 1 1;
+        &__footer {
+            flex: 1 1 35%;
+
+            &__actions {
+
+                button {
+
+                    @media screen and (min-width: 37.5em) {
+                        margin-right: 0;
+                    }
+                }
+            }
         }
     }
 }
