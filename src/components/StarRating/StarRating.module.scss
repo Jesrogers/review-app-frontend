@@ -1,0 +1,10 @@
+.starRating {
+
+    &__star {
+        cursor: pointer;
+    }
+
+    &__input {
+        display: none;
+    }
+}

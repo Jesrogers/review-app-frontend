@@ -1,4 +1,6 @@
 import React from 'react';
+import StarRating from '../StarRating/StarRating';
+import { FaRegEdit, FaTrash } from 'react-icons/fa';
 import styles from './ReviewCard.module.scss';
 
 const ReviewCard = ({ review }) => {
@@ -11,13 +13,13 @@ const ReviewCard = ({ review }) => {
         <p>{review.description}</p>
       </div>
       <footer className={styles.reviewCard__footer}>
-        <p>Rating Stars</p>
+        <StarRating />
         <div className={styles.reviewCard__footer__actions}>
           <button>
-            <span className="far fa-edit"></span>
+            <FaRegEdit />
           </button>
           <button>
-            <span className="fas fa-trash"></span>
+            <FaTrash />
           </button>
         </div>
       </footer>

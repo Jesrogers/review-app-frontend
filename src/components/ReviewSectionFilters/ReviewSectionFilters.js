@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ReviewSectionFilters.module.scss';
+import { FaRegWindowMaximize, FaBars } from 'react-icons/fa';
 
 const ReviewSectionFilters = ({
   rowLayout,
@@ -15,13 +16,13 @@ const ReviewSectionFilters = ({
           className={rowLayout ? null : styles.active}
           onClick={onCardLayoutChange}
         >
-          <span className="far fa-window-maximize"></span>
+          <FaRegWindowMaximize />
         </button>
         <button
           className={rowLayout ? styles.active : null}
           onClick={onRowLayoutChange}
         >
-          <span className="fas fa-bars"></span>
+          <FaBars />
         </button>
       </div>
     </div>
