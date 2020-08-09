@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 const Reviews = ({
   rowLayout,
   reviews,
+  handleReviewDelete,
   handleRowLayoutChange,
   handleCardLayoutChange,
 }) => {
@@ -41,7 +42,11 @@ const Reviews = ({
       <div className={`${styles.reviewSection__content} ${layoutClass}`}>
         {reviews.length ? (
           filteredReviews.map((review) => (
-            <ReviewCard review={review} key={review.id} />
+            <ReviewCard
+              review={review}
+              onReviewDelete={handleReviewDelete}
+              key={review.id}
+            />
           ))
         ) : (
           <NoReviewsMessage />
