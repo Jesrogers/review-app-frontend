@@ -1,6 +1,7 @@
 import React from 'react';
 import StarRating from '../StarRating/StarRating';
 import { FaRegEdit, FaTrash } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import styles from './ReviewCard.module.scss';
 import PropTypes from 'prop-types';
 
@@ -16,9 +17,9 @@ const ReviewCard = ({ review }) => {
       <footer className={styles.reviewCard__footer}>
         <StarRating scale={5} rating={review.rating} />
         <div className={styles.reviewCard__footer__actions}>
-          <button>
+          <Link to={`/review/${review.id}`}>
             <FaRegEdit />
-          </button>
+          </Link>
           <button>
             <FaTrash />
           </button>

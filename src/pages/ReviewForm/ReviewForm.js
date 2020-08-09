@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './ReviewForm.module.scss';
+import { useParams } from 'react-router-dom';
 import StarRating from '../../components/StarRating/StarRating';
 
 const ReviewForm = () => {
+  const { id } = useParams();
+
   return (
     <section className={styles.reviewFormSection}>
       <div className={styles.reviewFormSection__content}>
