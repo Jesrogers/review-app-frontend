@@ -28,7 +28,7 @@ const ReviewCard = ({ review }) => {
   );
 };
 
-ReviewCard.proptypes = {
+ReviewCard.propTypes = {
   review: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
