@@ -69,6 +69,7 @@ StarRating.propTypes = {
   scale: PropTypes.number,
   rating: PropTypes.number,
   editMode: PropTypes.bool,
+  updateReviewRating: PropTypes.func,
 };
 
 export default StarRating;

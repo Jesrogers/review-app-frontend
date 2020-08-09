@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './ReviewForm.module.scss';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import StarRating from '../../components/StarRating/StarRating';
 
@@ -63,6 +64,10 @@ const ReviewForm = ({ addReview }) => {
       </div>
     </section>
   );
+};
+
+ReviewForm.propTypes = {
+  addReview: PropTypes.func.isRequired,
 };
 
 export default ReviewForm;

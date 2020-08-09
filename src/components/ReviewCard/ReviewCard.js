@@ -42,6 +42,7 @@ ReviewCard.propTypes = {
     rating: PropTypes.number,
     id: PropTypes.number.isRequired,
   }),
+  deleteReview: PropTypes.func.isRequired,
 };
 
 export default ReviewCard;
