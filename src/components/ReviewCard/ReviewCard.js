@@ -5,7 +5,13 @@ import { Link } from 'react-router-dom';
 import styles from './ReviewCard.module.scss';
 import PropTypes from 'prop-types';
 
-const ReviewCard = ({ review, onReviewDelete }) => {
+const ReviewCard = ({ review, deleteReview }) => {
+  const handleReviewDelete = () => {
+    if (window.confirm(`Delete the ${review.title} review?`)) {
+      deleteReview(review.id);
+    }
+  };
+
   return (
     <article className={styles.reviewCard}>
       <header>
@@ -20,7 +26,7 @@ const ReviewCard = ({ review, onReviewDelete }) => {
           <Link to={`/review/${review.id}`}>
             <FaRegEdit />
           </Link>
-          <button onClick={() => onReviewDelete(review.id)}>
+          <button onClick={() => handleReviewDelete()}>
             <FaTrash />
           </button>
         </div>

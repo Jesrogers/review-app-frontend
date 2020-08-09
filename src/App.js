@@ -42,7 +42,7 @@ const App = () => {
     setReviews(reviews.concat(review));
   };
 
-  const handleReviewDelete = (id) => {
+  const deleteReview = (id) => {
     const updatedReviews = reviews.filter((review) => {
       return review.id !== id;
     });
@@ -59,7 +59,7 @@ const App = () => {
             <Reviews
               reviews={reviews}
               rowLayout={rowLayout}
-              handleReviewDelete={handleReviewDelete}
+              deleteReview={deleteReview}
               handleRowLayoutChange={handleRowLayoutChange}
               handleCardLayoutChange={handleCardLayoutChange}
             />

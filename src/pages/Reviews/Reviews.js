@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Reviews = ({
   rowLayout,
   reviews,
-  handleReviewDelete,
+  deleteReview,
   handleRowLayoutChange,
   handleCardLayoutChange,
 }) => {
@@ -44,7 +44,7 @@ const Reviews = ({
           filteredReviews.map((review) => (
             <ReviewCard
               review={review}
-              onReviewDelete={handleReviewDelete}
+              deleteReview={deleteReview}
               key={review.id}
             />
           ))
