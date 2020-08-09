@@ -1,10 +1,15 @@
 .starRating {
 
     &__star {
-        cursor: pointer;
+        vertical-align: middle;
+        transition: all .2s;
     }
 
     &__input {
         display: none;
     }
+}
+
+.editable {
+    cursor: pointer;
 }

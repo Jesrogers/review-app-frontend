@@ -13,7 +13,7 @@ const ReviewCard = ({ review }) => {
         <p>{review.description}</p>
       </div>
       <footer className={styles.reviewCard__footer}>
-        <StarRating />
+        <StarRating scale={5} rating={review.rating} />
         <div className={styles.reviewCard__footer__actions}>
           <button>
             <FaRegEdit />
