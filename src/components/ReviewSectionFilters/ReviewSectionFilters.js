@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ReviewSectionFilters.module.scss';
 import { FaRegWindowMaximize, FaBars } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 
 const ReviewSectionFilters = ({
   rowLayout,
@@ -27,6 +28,12 @@ const ReviewSectionFilters = ({
       </div>
     </div>
   );
+};
+
+ReviewSectionFilters.propTypes = {
+  rowLayout: PropTypes.bool,
+  onRowLayoutChange: PropTypes.func.isRequired,
+  onCardLayoutChange: PropTypes.func.isRequired,
 };
 
 export default ReviewSectionFilters;

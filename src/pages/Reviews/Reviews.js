@@ -3,6 +3,7 @@ import styles from './Reviews.module.scss';
 import NoReviewsMessage from '../../components/NoReviewsMessage/NoReviewsMessage';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
 import ReviewSectionFilters from '../../components/ReviewSectionFilters/ReviewSectionFilters';
+import PropTypes from 'prop-types';
 
 const Reviews = ({
   rowLayout,
@@ -32,6 +33,12 @@ const Reviews = ({
       </div>
     </section>
   );
+};
+
+Reviews.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  handleRowLayoutChange: PropTypes.func.isRequired,
+  handleCardLayoutChange: PropTypes.func.isRequired,
 };
 
 export default Reviews;

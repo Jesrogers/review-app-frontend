@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
+import PropTypes from 'prop-types';
 import styles from './StarRating.module.scss';
 
-const StarRating = ({ scale, rating, editMode = false }) => {
+const StarRating = ({ scale = 5, rating, editMode = false }) => {
   const [starRating, setStarRating] = useState(null);
   const [hover, setHover] = useState(null);
 
@@ -52,6 +53,12 @@ const StarRating = ({ scale, rating, editMode = false }) => {
       })}
     </div>
   );
+};
+
+StarRating.propTypes = {
+  scale: PropTypes.number,
+  rating: PropTypes.number,
+  editMode: PropTypes.bool,
 };
 
 export default StarRating;
