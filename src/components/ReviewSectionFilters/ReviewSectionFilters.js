@@ -41,6 +41,8 @@ ReviewSectionFilters.propTypes = {
   rowLayout: PropTypes.bool,
   onRowLayoutChange: PropTypes.func.isRequired,
   onCardLayoutChange: PropTypes.func.isRequired,
+  filterText: PropTypes.string,
+  onFilterTextChange: PropTypes.func.isRequired,
 };
 
 export default ReviewSectionFilters;

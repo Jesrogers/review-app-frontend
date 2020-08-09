@@ -52,6 +52,7 @@ const Reviews = ({
 };
 
 Reviews.propTypes = {
+  rowLayout: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
   handleRowLayoutChange: PropTypes.func.isRequired,
   handleCardLayoutChange: PropTypes.func.isRequired,
