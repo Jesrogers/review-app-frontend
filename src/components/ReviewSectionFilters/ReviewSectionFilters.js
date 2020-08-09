@@ -7,10 +7,17 @@ const ReviewSectionFilters = ({
   rowLayout,
   onRowLayoutChange,
   onCardLayoutChange,
+  filterText,
+  onFilterTextChange,
 }) => {
   return (
     <div className={styles.reviewSectionFilters}>
-      <input type="text" placeholder="Search by review..." />
+      <input
+        type="text"
+        placeholder="Search by review..."
+        value={filterText}
+        onChange={onFilterTextChange}
+      />
 
       <div className={styles.reviewSectionFilters__buttonContainer}>
         <button

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './Reviews.module.scss';
 import NoReviewsMessage from '../../components/NoReviewsMessage/NoReviewsMessage';
 import ReviewCard from '../../components/ReviewCard/ReviewCard';
@@ -11,7 +11,21 @@ const Reviews = ({
   handleRowLayoutChange,
   handleCardLayoutChange,
 }) => {
+  const [filterText, setFilterText] = useState('');
+
   const layoutClass = rowLayout ? 'rows' : 'cards';
+
+  const handleFilterTextChange = (e) => {
+    setFilterText(e.target.value);
+  };
+
+  const filteredReviews = reviews.filter((review) => {
+    return (
+      review.title.toLowerCase().includes(filterText.toLowerCase()) ||
+      review.description.toLowerCase().includes(filterText.toLowerCase()) ||
+      review.rating === Number(filterText)
+    );
+  });
 
   return (
     <section className={styles.reviewSection}>
@@ -20,11 +34,13 @@ const Reviews = ({
           rowLayout={rowLayout}
           onRowLayoutChange={handleRowLayoutChange}
           onCardLayoutChange={handleCardLayoutChange}
+          filterText={filterText}
+          onFilterTextChange={handleFilterTextChange}
         />
       </header>
       <div className={`${styles.reviewSection__content} ${layoutClass}`}>
         {reviews.length ? (
-          reviews.map((review) => (
+          filteredReviews.map((review) => (
             <ReviewCard review={review} key={review.id} />
           ))
         ) : (
