@@ -38,6 +38,10 @@ const App = () => {
     setRowLayout(false);
   };
 
+  const addReview = (review) => {
+    setReviews(reviews.concat(review));
+  };
+
   return (
     <Router>
       <Header />
@@ -52,7 +56,7 @@ const App = () => {
             />
           </Route>
           <Route path="/review">
-            <ReviewForm />
+            <ReviewForm addReview={addReview} />
           </Route>
           <Route path="/summary">
             <Summary />

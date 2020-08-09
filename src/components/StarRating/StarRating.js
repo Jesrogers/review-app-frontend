@@ -3,13 +3,23 @@ import { FaStar } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import styles from './StarRating.module.scss';
 
-const StarRating = ({ scale = 5, rating, editMode = false }) => {
+const StarRating = ({
+  scale = 5,
+  rating,
+  editMode = false,
+  updateReviewRating,
+}) => {
   const [starRating, setStarRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   useEffect(() => {
     setStarRating(rating);
   }, [rating]);
+
+  const onRatingChange = (value) => {
+    setStarRating(value);
+    updateReviewRating(value);
+  };
 
   const starArray = new Array(scale).fill();
 
@@ -26,7 +36,7 @@ const StarRating = ({ scale = 5, rating, editMode = false }) => {
               disabled={editMode ? false : true}
               className={styles.starRating__input}
               value={ratingValue}
-              onClick={() => setStarRating(ratingValue)}
+              onClick={() => onRatingChange(ratingValue)}
             />
 
             {editMode ? (
