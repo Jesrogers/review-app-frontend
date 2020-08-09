@@ -14,7 +14,7 @@ const StarRating = ({ scale = 5, rating, editMode = false }) => {
   const starArray = new Array(scale).fill();
 
   return (
-    <div className={styles.starRating}>
+    <div className="starContainer">
       {starArray.map((star, i) => {
         const ratingValue = i + 1;
 
@@ -31,7 +31,7 @@ const StarRating = ({ scale = 5, rating, editMode = false }) => {
 
             {editMode ? (
               <FaStar
-                size={20}
+                size={30}
                 className={`${styles.starRating__star} ${styles.editable}`}
                 color={
                   ratingValue <= (hover || starRating) ? 'yellow' : '#2b2b2b'
