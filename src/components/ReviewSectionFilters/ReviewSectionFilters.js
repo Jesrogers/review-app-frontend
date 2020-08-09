@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './ReviewSectionFilters.module.scss';
-import { FaRegWindowMaximize, FaBars } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { FaRegWindowMaximize, FaBars, FaPlus } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 
 const ReviewSectionFilters = ({
@@ -12,12 +13,17 @@ const ReviewSectionFilters = ({
 }) => {
   return (
     <div className={styles.reviewSectionFilters}>
-      <input
-        type="text"
-        placeholder="Search by review..."
-        value={filterText}
-        onChange={onFilterTextChange}
-      />
+      <div className={styles.reviewSectionFilters__inputContainer}>
+        <input
+          type="text"
+          placeholder="Search by review..."
+          value={filterText}
+          onChange={onFilterTextChange}
+        />
+        <Link to={'/review'} className={styles.addBtn}>
+          <FaPlus />
+        </Link>
+      </div>
 
       <div className={styles.reviewSectionFilters__buttonContainer}>
         <button
