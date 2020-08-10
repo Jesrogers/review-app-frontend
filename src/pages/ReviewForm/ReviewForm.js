@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styles from './ReviewForm.module.scss';
 import PropTypes from 'prop-types';
-import { useParams } from 'react-router-dom';
+import { useParams, withRouter } from 'react-router-dom';
 import StarRating from '../../components/StarRating/StarRating';
 
-const ReviewForm = ({ addReview }) => {
+const ReviewForm = ({ addReview, history }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [rating, setRating] = useState(0);
@@ -21,6 +21,7 @@ const ReviewForm = ({ addReview }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     addReview(newReview);
+    history.push('/');
   };
 
   const handleRatingClick = (rating) => {
@@ -70,4 +71,4 @@ ReviewForm.propTypes = {
   addReview: PropTypes.func.isRequired,
 };
 
-export default ReviewForm;
+export default withRouter(ReviewForm);

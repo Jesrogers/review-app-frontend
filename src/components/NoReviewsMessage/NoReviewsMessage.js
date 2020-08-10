@@ -7,7 +7,9 @@ const NoReviewsMessage = () => {
     <>
       <div className={styles.messageContainer}>
         <p> It seems you have no reviews!</p>
-        <Link className={styles.addBtn}>Add Review</Link>
+        <Link to="/review" className={styles.addBtn}>
+          Add Review
+        </Link>
       </div>
     </>
   );
