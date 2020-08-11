@@ -1,26 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './ReviewForm.module.scss';
 import PropTypes from 'prop-types';
 import { useParams, withRouter } from 'react-router-dom';
+import reviewService from '../../services/reviews';
 import StarRating from '../../components/StarRating/StarRating';
 
-const ReviewForm = ({ addReview, history }) => {
+const ReviewForm = ({ addReview, history, updateReview }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [rating, setRating] = useState(0);
 
   const { id } = useParams();
 
-  const newReview = {
-    title: title,
-    description: description,
-    rating: rating,
-    id: Math.floor(Math.random() * 10000),
-  };
+  useEffect(() => {
+    if (id) {
+      const fetchedReview = reviewService.getReview(Number(id));
+
+      if (fetchedReview) {
+        setTitle(fetchedReview.title);
+        setDescription(fetchedReview.description);
+        setRating(fetchedReview.rating);
+      }
+    }
+  }, [id]);
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addReview(newReview);
+
+    const newReview = {
+      title: title,
+      description: description,
+      rating: rating,
+      id: Number(id) || Math.floor(Math.random() * 10000),
+    };
+
+    if (id) {
+      updateReview(Number(id), newReview);
+    } else {
+      addReview(newReview);
+    }
+
     history.push('/');
   };
 
@@ -39,9 +58,10 @@ const ReviewForm = ({ addReview, history }) => {
             <div>
               <label htmlFor="title">Title</label>
               <input
-                id="title "
+                id="title"
                 type="text"
                 required
+                value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -49,11 +69,13 @@ const ReviewForm = ({ addReview, history }) => {
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
+                value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
             </div>
             <StarRating
               editMode={true}
+              rating={rating}
               updateReviewRating={handleRatingClick}
             />
 
@@ -68,7 +90,8 @@ const ReviewForm = ({ addReview, history }) => {
 };
 
 ReviewForm.propTypes = {
-  addReview: PropTypes.func.isRequired,
+  addReview: PropTypes.func,
+  updateReview: PropTypes.func,
 };
 
 export default withRouter(ReviewForm);

@@ -1,34 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Summary from './pages/Summary/Summary';
-
-let reviewArray = [
-  {
-    title: 'Example Movie',
-    description: 'What a great movie. The story was amazing.',
-    rating: 5,
-    id: 1,
-  },
-  {
-    title: 'Example Food',
-    description: "Didn't taste good.",
-    rating: 2,
-    id: 2,
-  },
-  {
-    title: 'Example Location',
-    description: 'A very nice vacation spot.',
-    rating: 4,
-    id: 3,
-  },
-];
+import reviewService from './services/reviews';
 
 const App = () => {
-  const [reviews, setReviews] = useState(reviewArray);
+  const [reviews, setReviews] = useState([]);
   const [rowLayout, setRowLayout] = useState(false);
+
+  useEffect(() => {
+    const reviews = reviewService.getAll();
+    setReviews(reviews);
+  }, []);
 
   const handleRowLayoutChange = () => {
     setRowLayout(true);
@@ -39,13 +24,18 @@ const App = () => {
   };
 
   const addReview = (review) => {
+    reviewService.addReview(review);
     setReviews(reviews.concat(review));
   };
 
+  const updateReview = (id, newReview) => {
+    setReviews(
+      reviews.map((review) => (review.id !== id ? review : newReview))
+    );
+  };
+
   const deleteReview = (id) => {
-    const updatedReviews = reviews.filter((review) => {
-      return review.id !== id;
-    });
+    const updatedReviews = reviews.filter((review) => review.id !== id);
 
     setReviews(updatedReviews);
   };
@@ -64,8 +54,11 @@ const App = () => {
               handleCardLayoutChange={handleCardLayoutChange}
             />
           </Route>
-          <Route path="/review">
+          <Route path="/review" exact>
             <ReviewForm addReview={addReview} />
+          </Route>
+          <Route path="/review/:id">
+            <ReviewForm updateReview={updateReview} />
           </Route>
           <Route path="/summary">
             <Summary />
