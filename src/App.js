@@ -5,6 +5,7 @@ import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Summary from './pages/Summary/Summary';
 import reviewService from './services/reviews';
+import request from './utils/request';
 
 const App = () => {
   const [reviews, setReviews] = useState([]);
