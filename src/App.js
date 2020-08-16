@@ -32,9 +32,12 @@ const App = () => {
     setReviews(reviews.concat(newReview));
   };
 
-  const updateReview = (id, newReview) => {
+  const updateReview = async (id, newReview) => {
+    const updatedReview = await reviewService.updateReview(id, newReview);
     setReviews(
-      reviews.map((review) => (review.id !== id ? review : newReview))
+      reviews.map((review) =>
+        review.id !== updatedReview.id ? review : updatedReview
+      )
     );
   };
 
@@ -49,15 +52,6 @@ const App = () => {
       <Header />
       <main>
         <Switch>
-          <Route exact path="/">
-            <Reviews
-              reviews={reviews}
-              rowLayout={rowLayout}
-              deleteReview={deleteReview}
-              handleRowLayoutChange={handleRowLayoutChange}
-              handleCardLayoutChange={handleCardLayoutChange}
-            />
-          </Route>
           <Route path="/review" exact>
             <ReviewForm addReview={addReview} />
           </Route>
@@ -66,6 +60,16 @@ const App = () => {
           </Route>
           <Route path="/summary">
             <Summary />
+          </Route>
+          <Route path="/">
+            <Reviews
+              reviews={reviews}
+              rowLayout={rowLayout}
+              x
+              deleteReview={deleteReview}
+              handleRowLayoutChange={handleRowLayoutChange}
+              handleCardLayoutChange={handleCardLayoutChange}
+            />
           </Route>
         </Switch>
       </main>

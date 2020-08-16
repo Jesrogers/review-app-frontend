@@ -32,6 +32,7 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
     e.preventDefault();
 
     const newReview = {
+      id: id ? Number(id) : null,
       title: title,
       description: description,
       rating: rating,

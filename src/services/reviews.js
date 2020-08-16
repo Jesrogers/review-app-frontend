@@ -17,10 +17,24 @@ const createReview = async (review) => {
   return newReview;
 };
 
+const updateReview = async (id, review) => {
+  const updatedReview = await request(`${baseUrl}/${id}`, {
+    method: 'PUT',
+    body: review,
+  });
+  return updatedReview;
+};
+
 const deleteReview = async (id) => {
   await request(`${baseUrl}/${id}`, {
     method: 'DELETE',
   });
 };
 
-export default { getReviews, getReview, createReview, deleteReview };
+export default {
+  getReviews,
+  getReview,
+  createReview,
+  updateReview,
+  deleteReview,
+};
