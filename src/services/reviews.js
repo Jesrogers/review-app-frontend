@@ -1,36 +1,26 @@
-let reviewArray = [
-  {
-    title: 'Example Movie',
-    description: 'What a great movie. The story was amazing.',
-    rating: 5,
-    id: 1,
-  },
-  {
-    title: 'Example Food',
-    description: "Didn't taste good.",
-    rating: 2,
-    id: 2,
-  },
-  {
-    title: 'Example Location',
-    description: 'A very nice vacation spot.',
-    rating: 4,
-    id: 3,
-  },
-];
+import request from '../utils/request';
+const baseUrl = 'http://localhost:3001/api/reviews';
 
-const getAll = () => {
-  return reviewArray;
+const getReviews = async () => {
+  return await request(baseUrl);
 };
 
-const getReview = (id) => {
-  const review = reviewArray.find((review) => review.id === id);
-  return review;
+const getReview = async (id) => {
+  return await request(`${baseUrl}/${id}`);
 };
 
-const addReview = (review) => {
-  reviewArray.concat(review);
-  return review;
+const createReview = async (review) => {
+  const newReview = await request(baseUrl, {
+    body: review,
+  });
+
+  return newReview;
 };
 
-export default { getAll, getReview, addReview };
+const deleteReview = async (id) => {
+  await request(`${baseUrl}/${id}`, {
+    method: 'DELETE',
+  });
+};
+
+export default { getReviews, getReview, createReview, deleteReview };

@@ -5,15 +5,18 @@ import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Summary from './pages/Summary/Summary';
 import reviewService from './services/reviews';
-import request from './utils/request';
 
 const App = () => {
   const [reviews, setReviews] = useState([]);
   const [rowLayout, setRowLayout] = useState(false);
 
   useEffect(() => {
-    const reviews = reviewService.getAll();
-    setReviews(reviews);
+    const getAllReviews = async () => {
+      const reviews = await reviewService.getReviews();
+      setReviews(reviews);
+    };
+
+    getAllReviews();
   }, []);
 
   const handleRowLayoutChange = () => {
@@ -24,9 +27,9 @@ const App = () => {
     setRowLayout(false);
   };
 
-  const addReview = (review) => {
-    reviewService.addReview(review);
-    setReviews(reviews.concat(review));
+  const addReview = async (review) => {
+    const newReview = await reviewService.createReview(review);
+    setReviews(reviews.concat(newReview));
   };
 
   const updateReview = (id, newReview) => {
@@ -36,8 +39,8 @@ const App = () => {
   };
 
   const deleteReview = (id) => {
+    reviewService.deleteReview(id);
     const updatedReviews = reviews.filter((review) => review.id !== id);
-
     setReviews(updatedReviews);
   };
 

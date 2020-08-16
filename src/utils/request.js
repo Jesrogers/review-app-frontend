@@ -14,6 +14,11 @@ const request = async (endpoint, { body, ...customConfig } = {}) => {
   }
 
   const response = await fetch(`${endpoint}`, config);
+
+  if (response.status === 204) {
+    return null;
+  }
+
   const data = response.json();
 
   if (response.ok) {

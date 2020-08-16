@@ -13,15 +13,19 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
   const { id } = useParams();
 
   useEffect(() => {
-    if (id) {
-      const fetchedReview = reviewService.getReview(Number(id));
+    const getReview = async () => {
+      if (id) {
+        const fetchedReview = await reviewService.getReview(Number(id));
 
-      if (fetchedReview) {
-        setTitle(fetchedReview.title);
-        setDescription(fetchedReview.description);
-        setRating(fetchedReview.rating);
+        if (fetchedReview) {
+          setTitle(fetchedReview.title);
+          setDescription(fetchedReview.description);
+          setRating(fetchedReview.rating);
+        }
       }
-    }
+    };
+
+    getReview();
   }, [id]);
 
   const onSubmit = (e) => {
@@ -31,7 +35,6 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
       title: title,
       description: description,
       rating: rating,
-      id: Number(id) || Math.floor(Math.random() * 10000),
     };
 
     if (id) {
