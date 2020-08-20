@@ -1,6 +1,5 @@
-.reviewCard {
+.review {
     display: flex;
-    margin-bottom: 1.25rem;
     box-shadow: 0 0.3em 0.8em rgba(0, 0, 0, 0.15);
     border-radius: 0.2em;
 
@@ -16,6 +15,7 @@
 
     &__content {
         padding: 0.5em 0.75em;
+        font-size: 0.875rem;
     }
 
     &__footer {
@@ -59,12 +59,13 @@
 }
 
 :global(.cards) {
-    .reviewCard {
+    .review {
         flex-direction: column;
-        flex: 0 1 100%;
+        justify-content: space-between;
 
         @media screen and (min-width: 37.5em) {
             flex: 0 1 calc(50% - 2em);
+            margin-bottom: 0;
         }
 
         @media screen and (min-width: 62.5em) {
@@ -78,13 +79,17 @@
 }
 
 :global(.rows) {
-    .reviewCard {
+    .review {
         flex-wrap: wrap;
         justify-content: space-between;
 
+        @media screen and (min-width: 37.5em) {
+            margin-bottom: 0;
+        }
+
         @media screen and (min-width: 62.5em) {
             flex-wrap: nowrap;
-            max-height: 6.25rem;
+            min-height: 6.25rem;
         }
 
         >header {

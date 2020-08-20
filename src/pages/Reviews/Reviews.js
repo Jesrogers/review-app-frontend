@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Reviews.module.scss';
 import NoReviewsMessage from '../../components/NoReviewsMessage/NoReviewsMessage';
-import ReviewCard from '../../components/ReviewCard/ReviewCard';
+import Review from '../../components/Review/Review';
 import ReviewSectionFilters from '../../components/ReviewSectionFilters/ReviewSectionFilters';
 import PropTypes from 'prop-types';
 
@@ -42,7 +42,7 @@ const Reviews = ({
       <div className={`${styles.reviewSection__content} ${layoutClass}`}>
         {reviews.length ? (
           filteredReviews.map((review) => (
-            <ReviewCard
+            <Review
               review={review}
               deleteReview={deleteReview}
               key={review.id}
