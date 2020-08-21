@@ -16,9 +16,9 @@
         grid-template-columns: 1fr;
         grid-template-rows: auto;
         grid-auto-rows: auto;
+        align-items: flex-start;
         row-gap: 1.25rem;
         height: 100%;
-        min-height: 37.5rem;
         padding-top: 1.25rem;
         position: relative;
         text-align: center;
@@ -48,5 +48,12 @@
     &.reviewSection__content {
         grid-template-columns: 1fr;
     }
+}
 
+:global(.empty) {
+    &.reviewSection__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

@@ -14,7 +14,15 @@ const Reviews = ({
 }) => {
   const [filterText, setFilterText] = useState('');
 
-  const layoutClass = rowLayout ? 'rows' : 'cards';
+  let layoutClass;
+
+  if (!reviews.length) {
+    layoutClass = 'empty';
+  } else if (rowLayout) {
+    layoutClass = 'rows';
+  } else {
+    layoutClass = 'cards';
+  }
 
   const handleFilterTextChange = (e) => {
     setFilterText(e.target.value);
