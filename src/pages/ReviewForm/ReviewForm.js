@@ -8,7 +8,8 @@ import StarRating from '../../components/StarRating/StarRating';
 const ReviewForm = ({ addReview, history, updateReview }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(null);
+  const [errors, setErrors] = useState({});
 
   const { id } = useParams();
 
@@ -28,6 +29,35 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
     getReview();
   }, [id]);
 
+  const formValidation = () => {
+    const errors = {};
+    let isValid = true;
+
+    if (!title.trim()) {
+      isValid = false;
+      errors['title'] = 'Cannot be empty';
+    }
+
+    if (title.length > 100) {
+      isValid = false;
+      errors['title'] = 'Title must be 100 characters or less';
+    }
+
+    if (description.length > 300) {
+      isValid = false;
+      errors['description'] = 'Description must be 300 characters or less';
+    }
+
+    if (!rating || rating < 1 || rating > 5) {
+      isValid = false;
+      errors['rating'] = 'Select a valid rating';
+    }
+
+    setErrors(errors);
+
+    return isValid;
+  };
+
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -38,13 +68,15 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
       rating: rating,
     };
 
-    if (id) {
-      updateReview(Number(id), newReview);
-    } else {
-      addReview(newReview);
+    if (formValidation()) {
+      if (id) {
+        updateReview(Number(id), newReview);
+        history.push('/');
+      } else {
+        addReview(newReview);
+        history.push('/');
+      }
     }
-
-    history.push('/');
   };
 
   const handleRatingClick = (rating) => {
@@ -65,23 +97,36 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
                 id="title"
                 type="text"
                 required
+                maxLength="100"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+              {errors.title ? (
+                <p className={styles.error}>{errors.title}</p>
+              ) : null}
             </div>
             <div>
               <label htmlFor="description">Description</label>
               <textarea
                 id="description"
+                maxLength="300"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
+              {errors.description ? (
+                <p className={styles.error}>{errors.description}</p>
+              ) : null}
             </div>
-            <StarRating
-              editMode={true}
-              rating={rating}
-              updateReviewRating={handleRatingClick}
-            />
+            <div>
+              <StarRating
+                editMode={true}
+                rating={rating}
+                updateReviewRating={handleRatingClick}
+              />
+              {errors.rating ? (
+                <p className={styles.error}>{errors.rating}</p>
+              ) : null}
+            </div>
 
             <button type="submit" className={styles.submitBtn}>
               Submit

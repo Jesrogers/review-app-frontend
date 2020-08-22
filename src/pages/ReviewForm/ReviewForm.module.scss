@@ -28,11 +28,15 @@
             font-size: 1.25rem;
 
             div {
+                position: relative;
                 text-align: left;
 
                 &:not(:global(.starContainer)) {
                     display: block;
-                    margin-bottom: 1.25rem;
+
+                    label {
+                        font-size: 1.5rem;
+                    }
 
                     input {
                         width: 100%;
@@ -46,6 +50,18 @@
                         height: 4rem;
                         font-size: 1rem;
                     }
+
+                    &:not(:last-of-type) {
+                        margin-bottom: 2rem;
+                    }
+                }
+
+                .error {
+                    position: absolute;
+                    bottom: -1.6rem;
+                    left: 0;
+                    color: red;
+                    font-size: 0.875rem;
                 }
             }
         }

@@ -9,7 +9,7 @@ const StarRating = ({
   editMode = false,
   updateReviewRating,
 }) => {
-  const [starRating, setStarRating] = useState(0);
+  const [starRating, setStarRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   useEffect(() => {
