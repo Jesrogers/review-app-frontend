@@ -3,21 +3,43 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
-import Summary from './pages/Summary/Summary';
+import Login from './pages/Login/Login';
+import Logout from './pages/Logout/Logout';
+import request from './utils/request';
 import reviewService from './services/reviews';
 
 const App = () => {
   const [reviews, setReviews] = useState([]);
   const [rowLayout, setRowLayout] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const authRes = await request('/api/auth/is-verified', {
+        headers: { Authorized: localStorage.getItem('Authorized') },
+      });
+      authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    };
+
+    checkAuth();
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const getAllReviews = async () => {
-      const reviews = await reviewService.getReviews();
-      setReviews(reviews);
+      if (isAuthenticated) {
+        const reviews = await reviewService.getReviews();
+        setReviews(reviews);
+      } else {
+        setReviews([]);
+      }
     };
 
     getAllReviews();
-  }, []);
+  }, [isAuthenticated]);
+
+  const setAuth = (bool) => {
+    setIsAuthenticated(bool);
+  };
 
   const handleRowLayoutChange = () => {
     setRowLayout(true);
@@ -49,7 +71,7 @@ const App = () => {
 
   return (
     <Router>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} />
       <main>
         <Switch>
           <Route path="/review" exact>
@@ -58,8 +80,11 @@ const App = () => {
           <Route path="/review/:id">
             <ReviewForm updateReview={updateReview} />
           </Route>
-          <Route path="/summary">
-            <Summary />
+          <Route path="/login">
+            <Login setAuth={setAuth} />
+          </Route>
+          <Route path="/logout">
+            <Logout setAuth={setAuth} />
           </Route>
           <Route path="/">
             <Reviews

@@ -1,5 +1,5 @@
 import request from '../utils/request';
-const baseUrl = 'http://localhost:3001/api/reviews';
+const baseUrl = '/api/reviews';
 
 const getReviews = async () => {
   return await request(baseUrl);

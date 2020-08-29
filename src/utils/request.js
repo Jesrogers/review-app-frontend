@@ -19,12 +19,12 @@ const request = async (endpoint, { body, ...customConfig } = {}) => {
     return null;
   }
 
-  const data = response.json();
+  const data = await response.json();
 
   if (response.ok) {
     return data;
   } else {
-    Promise.reject(data);
+    return Promise.reject(data);
   }
 };
 
