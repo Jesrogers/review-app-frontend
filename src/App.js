@@ -15,14 +15,12 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const authRes = await request('/api/auth/is-verified', {
-        headers: { Authorized: localStorage.getItem('Authorized') },
-      });
+      const authRes = await request('/api/auth/is-verified');
       authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
     };
 
     checkAuth();
-  }, [isAuthenticated]);
+  }, []);
 
   useEffect(() => {
     const getAllReviews = async () => {
