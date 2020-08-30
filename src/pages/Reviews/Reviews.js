@@ -11,6 +11,7 @@ const Reviews = ({
   deleteReview,
   handleRowLayoutChange,
   handleCardLayoutChange,
+  isAuthenticated,
 }) => {
   const [filterText, setFilterText] = useState('');
 
@@ -57,7 +58,7 @@ const Reviews = ({
             />
           ))
         ) : (
-          <NoReviewsMessage />
+          <NoReviewsMessage isAuthenticated={isAuthenticated} />
         )}
       </div>
     </section>

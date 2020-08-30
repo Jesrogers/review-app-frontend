@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Reviews from './pages/Reviews/Reviews';
@@ -15,8 +15,12 @@ const App = () => {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const authRes = await request('/api/auth/is-verified');
-      authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      try {
+        const authRes = await request('/api/auth/is-verified');
+        authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
+      } catch (err) {
+        setIsAuthenticated(false);
+      }
     };
 
     checkAuth();
@@ -35,9 +39,12 @@ const App = () => {
     getAllReviews();
   }, [isAuthenticated]);
 
-  const setAuth = (bool) => {
-    setIsAuthenticated(bool);
-  };
+  const setAuth = useCallback(
+    (bool) => {
+      setIsAuthenticated(bool);
+    },
+    [setIsAuthenticated]
+  );
 
   const handleRowLayoutChange = () => {
     setRowLayout(true);
@@ -88,10 +95,10 @@ const App = () => {
             <Reviews
               reviews={reviews}
               rowLayout={rowLayout}
-              x
               deleteReview={deleteReview}
               handleRowLayoutChange={handleRowLayoutChange}
               handleCardLayoutChange={handleCardLayoutChange}
+              isAuthenticated={isAuthenticated}
             />
           </Route>
         </Switch>
