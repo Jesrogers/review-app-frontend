@@ -5,6 +5,7 @@ import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Login from './pages/Login/Login';
 import Logout from './pages/Logout/Logout';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import request from './utils/request';
 import reviewService from './services/reviews';
 
@@ -82,14 +83,14 @@ const App = () => {
           <Route path="/review" exact>
             <ReviewForm addReview={addReview} />
           </Route>
-          <Route path="/review/:id">
+          <PrivateRoute path="/review/:id">
             <ReviewForm updateReview={updateReview} />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
-            <Login setAuth={setAuth} />
+            <Login setAuth={setAuth} isAuthenticated={isAuthenticated} />
           </Route>
           <Route path="/logout">
-            <Logout setAuth={setAuth} />
+            <Logout setAuth={setAuth} isAuthenticated={isAuthenticated} />
           </Route>
           <Route path="/">
             <Reviews

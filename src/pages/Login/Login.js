@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import request from '../../utils/request';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setAuth }) => {
+const Login = ({ setAuth, isAuthenticated }) => {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -51,6 +51,10 @@ const Login = ({ setAuth }) => {
       }
     }
   };
+
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <section className={styles.loginSection}>

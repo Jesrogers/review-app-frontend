@@ -1,17 +1,25 @@
 import React, { useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 import request from '../../utils/request';
 
-const Logout = ({ setAuth }) => {
+const Logout = ({ setAuth, isAuthenticated }) => {
   useEffect(() => {
     const logout = async () => {
-      await request('/api/auth/logout', {
-        method: 'POST',
-      });
+      if (isAuthenticated) {
+        await request('/api/auth/logout', {
+          method: 'POST',
+        });
+      }
     };
 
     logout();
     setAuth(false);
-  }, [setAuth]);
+  }, [setAuth, isAuthenticated]);
+
+  if (!isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return <h2>You have been logged out</h2>;
 };
 
