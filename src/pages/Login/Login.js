@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
 import { useHistory, Redirect } from 'react-router-dom';
-import request from '../../utils/request';
+import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -33,16 +33,9 @@ const Login = ({ setAuth, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    const user = {
-      username: username,
-      password: password,
-    };
-
     if (loginValidation()) {
       try {
-        await request('/api/auth/login', {
-          body: user,
-        });
+        await authService.login(username, password);
         setAuth(true);
 
         history.push('/');

@@ -6,7 +6,7 @@ import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Login from './pages/Login/Login';
 import Logout from './pages/Logout/Logout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
-import request from './utils/request';
+import authService from './services/auth';
 import reviewService from './services/reviews';
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const authRes = await request('/api/auth/is-verified');
+        const authRes = await authService.checkVerified();
         authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
       } catch (err) {
         setIsAuthenticated(false);
@@ -80,10 +80,10 @@ const App = () => {
       <Header isAuthenticated={isAuthenticated} />
       <main>
         <Switch>
-          <Route path="/review" exact>
+          <PrivateRoute path="/review" isAuthenticated={isAuthenticated} exact>
             <ReviewForm addReview={addReview} />
-          </Route>
-          <PrivateRoute path="/review/:id">
+          </PrivateRoute>
+          <PrivateRoute path="/review/:id" isAuthenticated={isAuthenticated}>
             <ReviewForm updateReview={updateReview} />
           </PrivateRoute>
           <Route path="/login">

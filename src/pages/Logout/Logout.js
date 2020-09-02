@@ -1,14 +1,12 @@
 import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import request from '../../utils/request';
+import authService from '../../services/auth';
 
 const Logout = ({ setAuth, isAuthenticated }) => {
   useEffect(() => {
     const logout = async () => {
       if (isAuthenticated) {
-        await request('/api/auth/logout', {
-          method: 'POST',
-        });
+        await authService.logout();
       }
     };
 

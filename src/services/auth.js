@@ -1,5 +1,5 @@
 import request from '../utils/request';
-const baseUrl = 'http://localhost:3001/api/auth';
+const baseUrl = '/api/auth';
 
 const register = async (username, password) => {
   const newUser = {
@@ -12,4 +12,25 @@ const register = async (username, password) => {
   });
 };
 
-export default { register };
+const login = async (username, password) => {
+  const credentials = {
+    username: username,
+    password: password,
+  };
+
+  await request(`${baseUrl}/login`, {
+    body: credentials,
+  });
+};
+
+const checkVerified = async () => {
+  return await request(`${baseUrl}/is-verified`);
+};
+
+const logout = async () => {
+  await request(`${baseUrl}/logout`, {
+    method: 'POST',
+  });
+};
+
+export default { register, login, checkVerified, logout };
