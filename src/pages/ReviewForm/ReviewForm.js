@@ -3,6 +3,7 @@ import styles from './ReviewForm.module.scss';
 import PropTypes from 'prop-types';
 import { useParams, withRouter } from 'react-router-dom';
 import reviewService from '../../services/reviews';
+import { ToastContainer, toast } from 'react-toastify';
 import StarRating from '../../components/StarRating/StarRating';
 
 const ReviewForm = ({ addReview, history, updateReview }) => {
@@ -58,7 +59,7 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
     return isValid;
   };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const newReview = {
@@ -68,12 +69,16 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
     };
 
     if (formValidation()) {
-      if (id) {
-        updateReview(Number(id), newReview);
-        history.push('/');
-      } else {
-        addReview(newReview);
-        history.push('/');
+      try {
+        if (id) {
+          await updateReview(Number(id), newReview);
+          history.push('/');
+        } else {
+          await addReview(newReview);
+          history.push('/');
+        }
+      } catch (err) {
+        toast.error(err);
       }
     }
   };
@@ -84,6 +89,17 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
 
   return (
     <section className={styles.reviewFormSection}>
+      <ToastContainer
+        position="top-center"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className={styles.reviewFormSection__content}>
         <form className={styles.reviewFormSection__form} onSubmit={onSubmit}>
           <header>

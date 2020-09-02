@@ -15,12 +15,11 @@ const Login = ({ setAuth, isAuthenticated }) => {
     const errors = {};
     let isValid = true;
 
-    if (!username.trim()) {
+    if (!username || !username.trim()) {
       isValid = false;
       errors['username'] = 'Cannot be empty';
     }
-
-    if (!password.trim()) {
+    if (!password || !password.trim()) {
       isValid = false;
       errors['password'] = 'Cannot be empty';
     }
@@ -39,8 +38,8 @@ const Login = ({ setAuth, isAuthenticated }) => {
         setAuth(true);
 
         history.push('/');
-      } catch (error) {
-        toast.error(error);
+      } catch (err) {
+        toast.error(err);
       }
     }
   };

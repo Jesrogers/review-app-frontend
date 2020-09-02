@@ -69,8 +69,8 @@ const App = () => {
     );
   };
 
-  const deleteReview = (id) => {
-    reviewService.deleteReview(id);
+  const deleteReview = async (id) => {
+    await reviewService.deleteReview(id);
     const updatedReviews = reviews.filter((review) => review.id !== id);
     setReviews(updatedReviews);
   };

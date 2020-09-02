@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 const Review = ({ review, deleteReview }) => {
   const handleReviewDelete = () => {
-    if (window.confirm(`Delete the ${review.title} review?`)) {
+    if (window.confirm(`Delete the review for ${review.title}?`)) {
       deleteReview(review.id);
     }
   };
