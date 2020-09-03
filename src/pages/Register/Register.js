@@ -1,27 +1,50 @@
 import React, { useState } from 'react';
-import styles from './Login.module.scss';
-import { useHistory, Link } from 'react-router-dom';
+import styles from './Register.module.scss';
+import { useHistory, Redirect, Link } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = ({ setAuth, isAuthenticated }) => {
+const Register = ({ setAuth, isAuthenticated }) => {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const loginValidation = () => {
+  const registerValidation = () => {
     const errors = {};
+    const usernameRegex = RegExp(/^[a-zA-Z0-9]+$/);
     let isValid = true;
 
     if (!username || !username.trim()) {
       isValid = false;
       errors['username'] = 'Cannot be empty';
     }
+
+    if (!usernameRegex.test(username)) {
+      isValid = false;
+      errors['username'] = 'Username only allows for alphanumeric characters';
+    }
+
+    if (username.length > 100) {
+      isValid = false;
+      errors['username'] = 'Username must be under 100 characters';
+    }
+
     if (!password || !password.trim()) {
       isValid = false;
       errors['password'] = 'Cannot be empty';
+    }
+
+    if (password.length > 200) {
+      isValid = false;
+      errors['password'] = 'Password must be under 200 characters';
+    }
+
+    if (repeatPassword !== password) {
+      isValid = false;
+      errors['repeatPassword'] = 'Passwords must match';
     }
 
     setErrors(errors);
@@ -32,9 +55,9 @@ const Login = ({ setAuth, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (loginValidation()) {
+    if (registerValidation()) {
       try {
-        await authService.login(username, password);
+        await authService.register(username, password, repeatPassword);
         setAuth(true);
 
         history.push('/');
@@ -44,8 +67,12 @@ const Login = ({ setAuth, isAuthenticated }) => {
     }
   };
 
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
-    <section className={styles.loginSection}>
+    <section className={styles.registerSection}>
       <ToastContainer
         position="top-center"
         autoClose={2500}
@@ -57,12 +84,12 @@ const Login = ({ setAuth, isAuthenticated }) => {
         draggable
         pauseOnHover
       />
-      <div className={styles.loginSection__content}>
-        <form className={styles.loginSection__form} onSubmit={onSubmit}>
+      <div className={styles.registerSection__content}>
+        <form className={styles.registerSection__form} onSubmit={onSubmit}>
           <header>
-            <h2>Login</h2>
+            <h2>Register</h2>
           </header>
-          <div className={styles.loginSection__formContent}>
+          <div className={styles.registerSection__formContent}>
             <div>
               <label htmlFor="username">Username</label>
               <input
@@ -88,8 +115,20 @@ const Login = ({ setAuth, isAuthenticated }) => {
                 <p className={styles.error}>{errors.password}</p>
               ) : null}
             </div>
+            <div>
+              <label htmlFor="repeatPassword">Repeat Password</label>
+              <input
+                type="password"
+                required
+                value={repeatPassword}
+                onChange={(e) => setRepeatPassword(e.target.value)}
+              />
+              {errors.repeatPassword ? (
+                <p className={styles.error}>{errors.repeatPassword}</p>
+              ) : null}
+            </div>
             <div className={styles.submitContainer}>
-              <Link to="/register">Register</Link>
+              <Link to="/login">Login</Link>
               <button type="submit" className={styles.submitBtn}>
                 Submit
               </button>
@@ -101,4 +140,4 @@ const Login = ({ setAuth, isAuthenticated }) => {
   );
 };
 
-export default Login;
+export default Register;

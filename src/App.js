@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Reviews from './pages/Reviews/Reviews';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
 import Logout from './pages/Logout/Logout';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import authService from './services/auth';
@@ -86,6 +87,9 @@ const App = () => {
           <PrivateRoute path="/review/:id" isAuthenticated={isAuthenticated}>
             <ReviewForm updateReview={updateReview} />
           </PrivateRoute>
+          <Route path="/register">
+            <Register setAuth={setAuth} isAuthenticated={isAuthenticated} />
+          </Route>
           <Route path="/login">
             <Login setAuth={setAuth} isAuthenticated={isAuthenticated} />
           </Route>

@@ -1,13 +1,14 @@
 import request from '../utils/request';
 const baseUrl = '/api/auth';
 
-const register = async (username, password) => {
+const register = async (username, password, repeatPassword) => {
   const newUser = {
     username: username,
     password: password,
+    repeatPassword: repeatPassword,
   };
 
-  const registerResponse = await request(`${baseUrl}/register`, {
+  await request(`${baseUrl}/register`, {
     body: newUser,
   });
 };
