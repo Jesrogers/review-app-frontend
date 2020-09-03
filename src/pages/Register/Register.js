@@ -80,6 +80,7 @@ const Register = ({ setAuth, isAuthenticated }) => {
         newestOnTop={false}
         closeOnClick
         rtl={false}
+        limit={3}
         pauseOnFocusLoss
         draggable
         pauseOnHover

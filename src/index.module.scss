@@ -1,6 +1,8 @@
 :root {
   --m1: #2A72C1;
   --m2: #A3D5FF;
+  --light: #fbfbfb;
+  --dark: #2b2b2b;
 }
 
 html {
@@ -12,7 +14,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400px;
   line-height: 1.7;
-  color: #2b2b2b;
+  color: var(--dark);
   background: linear-gradient(90deg, rgba(232, 232, 232, 1) 0%, rgba(251, 251, 251, 1) 50%, rgba(232, 232, 232, 1) 100%);
 }
 
@@ -25,16 +27,13 @@ body {
 }
 
 *:focus {
-  outline: 1px solid #fbfbfb;
+  outline: 1px solid var(--light);
 }
 
-// main {
-//   min-height: 37.5rem;
-// }
 
 h1 {
   font-size: 2.6rem;
-  color: #fbfbfb;
+  color: var(--light);
 }
 
 button,

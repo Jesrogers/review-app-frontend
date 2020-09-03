@@ -3,7 +3,7 @@
     max-width: 75rem;
     margin: 0 auto;
     padding: 1em;
-    background: #fbfbfb;
+    background: var(--light);
 
     @media screen and (min-width: 37.5em) {
         padding: 1.25em;

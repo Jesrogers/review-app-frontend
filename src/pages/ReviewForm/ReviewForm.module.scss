@@ -4,7 +4,7 @@
     margin: 0 auto;
     padding: 1em;
     transform: translateZ(0);
-    background: #fbfbfb;
+    background: var(--light);
 
     &__content {
         display: flex;
@@ -68,7 +68,7 @@
         }
 
         >header {
-            color: #fbfbfb;
+            color: var(--light);
             background: var(--m1);;
             border-top-left-radius: 0.2em;
             border-top-right-radius: 0.2em;
@@ -81,7 +81,7 @@
         .submitBtn {
             padding: 0.6em;
             font-size: 1rem;
-            color: #fbfbfb;
+            color: var(--light);
             border: 0;
             background: var(--m1);;
             cursor: pointer;

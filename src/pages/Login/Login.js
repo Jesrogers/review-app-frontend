@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, Redirect } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -44,6 +44,10 @@ const Login = ({ setAuth, isAuthenticated }) => {
     }
   };
 
+  if (isAuthenticated) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <section className={styles.loginSection}>
       <ToastContainer
@@ -53,6 +57,7 @@ const Login = ({ setAuth, isAuthenticated }) => {
         newestOnTop={false}
         closeOnClick
         rtl={false}
+        limit={3}
         pauseOnFocusLoss
         draggable
         pauseOnHover

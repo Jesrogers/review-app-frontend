@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Reviews.module.scss';
 import NoReviewsMessage from '../../components/NoReviewsMessage/NoReviewsMessage';
+import Loader from '../../components/Loader/Loader';
 import Review from '../../components/Review/Review';
 import ReviewSectionFilters from '../../components/ReviewSectionFilters/ReviewSectionFilters';
 import PropTypes from 'prop-types';
@@ -11,6 +12,7 @@ const Reviews = ({
   deleteReview,
   handleRowLayoutChange,
   handleCardLayoutChange,
+  isLoading,
   isAuthenticated,
 }) => {
   const [filterText, setFilterText] = useState('');
@@ -36,6 +38,25 @@ const Reviews = ({
       review.rating === Number(filterText)
     );
   });
+
+  if (isLoading) {
+    return (
+      <section className={styles.reviewSection}>
+        <header>
+          <ReviewSectionFilters
+            rowLayout={rowLayout}
+            onRowLayoutChange={handleRowLayoutChange}
+            onCardLayoutChange={handleCardLayoutChange}
+            filterText={filterText}
+            onFilterTextChange={handleFilterTextChange}
+          />
+        </header>
+        <div className={`${styles.reviewSection__content} ${layoutClass}`}>
+          <Loader />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.reviewSection}>

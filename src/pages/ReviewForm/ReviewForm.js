@@ -4,11 +4,13 @@ import PropTypes from 'prop-types';
 import { useParams, withRouter } from 'react-router-dom';
 import reviewService from '../../services/reviews';
 import { ToastContainer, toast } from 'react-toastify';
+import Loader from '../../components/Loader/Loader';
 import StarRating from '../../components/StarRating/StarRating';
 
 const ReviewForm = ({ addReview, history, updateReview }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const [rating, setRating] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -18,16 +20,22 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
     const getReview = async () => {
       if (id) {
         const fetchedReview = await reviewService.getReview(Number(id));
-
-        if (fetchedReview) {
-          setTitle(fetchedReview.title);
-          setDescription(fetchedReview.description);
-          setRating(fetchedReview.rating);
-        }
+        setTitle(fetchedReview.title);
+        setDescription(fetchedReview.description);
+        setRating(fetchedReview.rating);
+        setIsLoading(false);
+      } else {
+        setIsLoading(false);
       }
     };
 
-    getReview();
+    try {
+      getReview();
+    } catch (err) {
+      toast.error(err, {
+        autoClose: false,
+      });
+    }
   }, [id]);
 
   const formValidation = () => {
@@ -86,6 +94,27 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
   const handleRatingClick = (rating) => {
     setRating(rating);
   };
+
+  if (isLoading) {
+    return (
+      <section className={styles.reviewFormSection}>
+        <ToastContainer
+          position="top-center"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <div className={styles.reviewFormSection__content}>
+          <Loader />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.reviewFormSection}>

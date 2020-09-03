@@ -36,7 +36,7 @@
 
         .addBtn {
             padding: 0.6em;
-            color: #fbfbfb;
+            color: var(--light);
             cursor: pointer;
             background: none;
             border: 0;
@@ -48,7 +48,7 @@
             &.active,
             &:hover,
             &:active {
-                color: #2b2b2b;
+                color: var(--dark);
                 background: #d5d5d55c;
             }
 
@@ -70,7 +70,7 @@
 
         button {
             padding: 0.6em;
-            color: #fbfbfb;
+            color: var(--light);
             cursor: pointer;
             background: none;
             border: 0;
@@ -80,7 +80,7 @@
             &.active,
             &:hover,
             &:active {
-                color: #2b2b2b;
+                color: var(--dark);
                 background: #d5d5d55c;
             }
 

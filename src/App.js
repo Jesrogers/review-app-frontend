@@ -13,6 +13,7 @@ import reviewService from './services/reviews';
 const App = () => {
   const [reviews, setReviews] = useState([]);
   const [rowLayout, setRowLayout] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ const App = () => {
         authRes ? setIsAuthenticated(true) : setIsAuthenticated(false);
       } catch (err) {
         setIsAuthenticated(false);
+        setIsLoading(false);
       }
     };
 
@@ -33,6 +35,7 @@ const App = () => {
       if (isAuthenticated) {
         const reviews = await reviewService.getReviews();
         setReviews(reviews);
+        setIsLoading(false);
       } else {
         setReviews([]);
       }
@@ -103,6 +106,7 @@ const App = () => {
               deleteReview={deleteReview}
               handleRowLayoutChange={handleRowLayoutChange}
               handleCardLayoutChange={handleCardLayoutChange}
+              isLoading={isLoading}
               isAuthenticated={isAuthenticated}
             />
           </Route>
