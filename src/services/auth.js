@@ -1,5 +1,5 @@
 import request from '../utils/request';
-const baseUrl = '/api/auth';
+const baseUrl = 'https://review-app-backend.hostman.site/api/auth';
 
 const register = async (username, password, repeatPassword) => {
   const newUser = {
