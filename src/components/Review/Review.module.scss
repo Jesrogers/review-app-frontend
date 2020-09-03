@@ -7,7 +7,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: lightblue;
+        background: var(--m2);;
         border-top-left-radius: 0.2em;
         border-top-right-radius: 0.2em;
         padding: 0.5em 0.75em;
@@ -23,7 +23,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 0.5em 0.75em;
-        background: #add8e6;
+        background: var(--m2);;
 
         &__actions {
             display: flex;

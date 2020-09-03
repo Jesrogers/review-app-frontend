@@ -1,7 +1,7 @@
 .header {
     padding: 0.5em 2.5em;
     text-align: center;
-    background: #3590F3;
+    background: var(--m1);;
 
     @media screen and (min-width: 37.5em) {
         display: flex;

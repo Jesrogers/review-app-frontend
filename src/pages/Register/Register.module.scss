@@ -63,7 +63,7 @@
 
         >header {
             color: #fbfbfb;
-            background: #3590F3;
+            background: var(--m1);;
             border-top-left-radius: 0.2em;
             border-top-right-radius: 0.2em;
             padding: 0.5em 0.75em;
@@ -76,7 +76,7 @@
             align-items: center;
 
             a {
-                color: #3590F3;
+                color: var(--m1);;
                 text-decoration: none;
             }
 
@@ -85,13 +85,13 @@
                 font-size: 1.25rem;
                 color: #fbfbfb;
                 border: 0;
-                background: #3590F3;
+                background: var(--m1);;
                 cursor: pointer;
                 transition: all .3s;
 
                 &:hover,
                 &:focus {
-                    background: lightblue;
+                    background: var(--m2);;
                 }
             }
         }

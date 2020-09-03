@@ -44,7 +44,7 @@ const StarRating = ({
                 size={30}
                 className={`${styles.starRating__star} ${styles.editable}`}
                 color={
-                  ratingValue <= (hover || starRating) ? 'yellow' : '#2b2b2b'
+                  ratingValue <= (hover || starRating) ? '#0C6811' : '#4f4f4f'
                 }
                 onMouseEnter={() => setHover(ratingValue)}
                 onMouseLeave={() => setHover(null)}
@@ -54,7 +54,7 @@ const StarRating = ({
                 size={20}
                 className={styles.starRating__star}
                 color={
-                  ratingValue <= (hover || starRating) ? 'yellow' : '#2b2b2b'
+                  ratingValue <= (hover || starRating) ? '#0C6811' : '#4f4f4f'
                 }
               />
             )}
