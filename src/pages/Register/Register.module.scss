@@ -63,7 +63,8 @@
 
         >header {
             color: var(--light);
-            background: var(--m1);;
+            background: var(--m1);
+            ;
             border-top-left-radius: 0.2em;
             border-top-right-radius: 0.2em;
             padding: 0.5em 0.75em;
@@ -76,8 +77,18 @@
             align-items: center;
 
             a {
-                color: var(--m1);;
+                color: var(--m1);
                 text-decoration: none;
+                transition: .3s all;
+                text-align: left;
+
+                &:focus,
+                &:hover,
+                &:active {
+                    background: var(--m1);
+                    color: var(--light);
+                    padding: .2em;
+                }
             }
 
             .submitBtn {
@@ -85,13 +96,15 @@
                 font-size: 1.25rem;
                 color: var(--light);
                 border: 0;
-                background: var(--m1);;
+                background: var(--m1);
                 cursor: pointer;
                 transition: all .3s;
 
                 &:hover,
-                &:focus {
-                    background: var(--m2);;
+                &:focus,
+                &:active {
+                    color: var(--dark);
+                    background: var(--m2);
                 }
             }
         }

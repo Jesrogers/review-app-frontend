@@ -3,7 +3,7 @@ const baseUrl = '/api/auth';
 
 const register = async (username, password, repeatPassword) => {
   const newUser = {
-    username: username,
+    username: username.toLowerCase(),
     password: password,
     repeatPassword: repeatPassword,
   };
@@ -15,7 +15,7 @@ const register = async (username, password, repeatPassword) => {
 
 const login = async (username, password) => {
   const credentials = {
-    username: username,
+    username: username.toLowerCase(),
     password: password,
   };
 

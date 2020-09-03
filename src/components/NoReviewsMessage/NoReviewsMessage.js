@@ -6,15 +6,26 @@ const NoReviewsMessage = ({ isAuthenticated }) => {
   return (
     <>
       <div className={styles.messageContainer}>
-        <p> It seems you have no reviews!</p>
         {isAuthenticated ? (
-          <Link to="/review" className={styles.addBtn}>
-            Add Review
-          </Link>
+          <>
+            <p>
+              It seems you have no reviews! <br></br> Click the + icon above or
+              the button below.
+            </p>
+            <Link to="/review" className={styles.addBtn}>
+              Add Review
+            </Link>
+          </>
         ) : (
-          <Link to="/login" className={styles.addBtn}>
-            Login
-          </Link>
+          <>
+            <p>
+              It seems you have no reviews! <br></br> Click to button below to
+              login or register an account.
+            </p>
+            <Link to="/login" className={styles.addBtn}>
+              Login
+            </Link>
+          </>
         )}
       </div>
     </>

@@ -6,7 +6,9 @@
     }
 
     &__input {
-        display: none;
+        opacity: 0;
+        width: 0;
+
     }
 }
 

@@ -5,7 +5,8 @@
     flex-wrap: wrap;
     padding: 0.5em;
     border-radius: 4px;
-    background: var(--m1);;
+    background: var(--m1);
+    ;
 
     &__inputContainer {
         display: flex;
@@ -45,7 +46,7 @@
             margin-left: .75rem;
             margin-right: auto;
 
-            &.active,
+            &:focus,
             &:hover,
             &:active {
                 color: var(--dark);
@@ -79,6 +80,7 @@
 
             &.active,
             &:hover,
+            &:focus,
             &:active {
                 color: var(--dark);
                 background: #d5d5d55c;

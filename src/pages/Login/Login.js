@@ -94,7 +94,7 @@ const Login = ({ setAuth, isAuthenticated }) => {
               ) : null}
             </div>
             <div className={styles.submitContainer}>
-              <Link to="/register">Register</Link>
+              <Link to="/register">Register a new account</Link>
               <button type="submit" className={styles.submitBtn}>
                 Submit
               </button>

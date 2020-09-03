@@ -1,7 +1,7 @@
 .header {
     padding: 0.5em 2.5em;
     text-align: center;
-    background: var(--m1);;
+    background: var(--m1);
 
     @media screen and (min-width: 37.5em) {
         display: flex;
@@ -29,9 +29,12 @@
                 padding: .3em .5em;
                 color: var(--light);
                 text-decoration: none;
+                transition: .3s all;
 
                 &:hover,
+                &:focus,
                 &:active {
+                    color: var(--dark);
                     background: #d5d5d55c;
                 }
             }

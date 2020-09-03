@@ -7,10 +7,12 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: var(--m2);;
+        background: var(--m2);
         border-top-left-radius: 0.2em;
         border-top-right-radius: 0.2em;
         padding: 0.5em 0.75em;
+        word-break: break-word;
+
     }
 
     &__content {
@@ -23,7 +25,8 @@
         justify-content: space-between;
         align-items: center;
         padding: 0.5em 0.75em;
-        background: var(--m2);;
+        background: var(--m2);
+        ;
 
         &__actions {
             display: flex;
@@ -39,8 +42,9 @@
                 border-radius: 4px;
 
                 &:hover,
+                &:focus,
                 &:active {
-                    color: var(--dark);
+                    color: #0C6811;
                     background: #d5d5d55c;
                 }
 

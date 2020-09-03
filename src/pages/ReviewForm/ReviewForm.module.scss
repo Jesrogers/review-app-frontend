@@ -39,7 +39,7 @@
                         font-size: 1.5rem;
                     }
 
-                    input {
+                    >input {
                         width: 100%;
                         padding: 0.5em;
                         font-size: 1rem;
@@ -69,7 +69,8 @@
 
         >header {
             color: var(--light);
-            background: var(--m1);;
+            background: var(--m1);
+            ;
             border-top-left-radius: 0.2em;
             border-top-right-radius: 0.2em;
             padding: 0.5em 0.75em;
@@ -83,13 +84,17 @@
             font-size: 1rem;
             color: var(--light);
             border: 0;
-            background: var(--m1);;
+            background: var(--m1);
+            ;
             cursor: pointer;
             transition: all .3s;
 
             &:hover,
-            &:focus {
-                background: var(--m2);;
+            &:focus,
+            &:active {
+                color: var(--dark);
+                background: var(--m2);
+
             }
         }
 
