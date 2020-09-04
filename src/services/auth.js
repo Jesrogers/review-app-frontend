@@ -1,5 +1,5 @@
 import request from '../utils/request';
-const baseUrl = 'https://review-app-backend-cfdd.hostman.site/api/auth';
+const baseUrl = '/api/auth';
 
 const register = async (username, password, repeatPassword) => {
   const newUser = {

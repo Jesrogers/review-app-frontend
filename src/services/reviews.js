@@ -1,5 +1,5 @@
 import request from '../utils/request';
-const baseUrl = 'https://review-app-backend-cfdd.hostman.site/api/reviews';
+const baseUrl = '/api/reviews';
 
 const getReviews = async () => {
   return await request(baseUrl);
