@@ -132,7 +132,7 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
       <div className={styles.reviewFormSection__content}>
         <form className={styles.reviewFormSection__form} onSubmit={onSubmit}>
           <header>
-            <h2>Add Review</h2>
+            <h2>{id ? 'Edit Review' : 'Add Review'}</h2>
           </header>
           <div className={styles.reviewFormSection__formContent}>
             <div>

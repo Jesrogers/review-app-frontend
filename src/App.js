@@ -38,9 +38,11 @@ const App = () => {
         setIsLoading(false);
       } else {
         setReviews([]);
+        setIsLoading(false);
       }
     };
 
+    setIsLoading(true);
     getAllReviews();
   }, [isAuthenticated]);
 
