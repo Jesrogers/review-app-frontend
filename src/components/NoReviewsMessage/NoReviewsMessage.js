@@ -19,7 +19,7 @@ const NoReviewsMessage = ({ isAuthenticated }) => {
         ) : (
           <>
             <p>
-              It seems you have no reviews! <br></br> Click to button below to
+              It seems you have no reviews! <br></br> Click the button below to
               login or register an account.
             </p>
             <Link to="/login" className={styles.addBtn}>
