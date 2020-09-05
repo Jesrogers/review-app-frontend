@@ -2,6 +2,8 @@
 
 An application that allows for users to create reviews of whatever they want. Built with the PERN stack (Postgres, Express, React, Node).
 
+Use the deployed application at: [https://reviews-application.herokuapp.com](https://reviews-application.herokuapp.com).
+
 For the backend repository, please visit [https://github.com/Jesrogers/review-app-backend](https://github.com/Jesrogers/review-app-backend).
 
 ## Project Features
