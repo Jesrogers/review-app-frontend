@@ -88,10 +88,19 @@ const Reviews = ({
 
 Reviews.propTypes = {
   rowLayout: PropTypes.bool.isRequired,
-  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      description: PropTypes.string,
+      rating: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   deleteReview: PropTypes.func.isRequired,
   handleRowLayoutChange: PropTypes.func.isRequired,
   handleCardLayoutChange: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default Reviews;

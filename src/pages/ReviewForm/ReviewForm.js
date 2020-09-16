@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
 import StarRating from '../../components/StarRating/StarRating';
 
-const ReviewForm = ({ addReview, history, updateReview }) => {
+const ReviewForm = ({ addReview, updateReview, history }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -185,6 +185,7 @@ const ReviewForm = ({ addReview, history, updateReview }) => {
 ReviewForm.propTypes = {
   addReview: PropTypes.func,
   updateReview: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default withRouter(ReviewForm);

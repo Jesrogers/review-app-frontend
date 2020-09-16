@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
 
@@ -22,6 +23,10 @@ const Header = ({ isAuthenticated }) => {
       </nav>
     </header>
   );
+};
+
+Header.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default Header;

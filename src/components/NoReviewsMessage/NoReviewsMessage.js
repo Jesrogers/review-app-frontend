@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './NoReviewsMessage.module.scss';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +31,10 @@ const NoReviewsMessage = ({ isAuthenticated }) => {
       </div>
     </>
   );
+};
+
+NoReviewsMessage.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default NoReviewsMessage;

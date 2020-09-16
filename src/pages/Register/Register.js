@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
+import PropTypes from 'prop-types';
 import { useHistory, Redirect, Link } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -139,6 +140,11 @@ const Register = ({ setAuth, isAuthenticated }) => {
       </div>
     </section>
   );
+};
+
+Register.propTypes = {
+  setAuth: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
 };
 
 export default Register;

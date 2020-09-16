@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
+import PropTypes from 'prop-types';
 import { useHistory, Link, Redirect } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -105,5 +106,10 @@ const Login = ({ setAuth, isAuthenticated }) => {
     </section>
   );
 };
+
+Login.propTypes = {
+  setAuth: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired
+}
 
 export default Login;
