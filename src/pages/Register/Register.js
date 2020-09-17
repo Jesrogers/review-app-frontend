@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Register.module.scss';
 import PropTypes from 'prop-types';
+import { registerValidation } from '../../utils/validations';
 import { useHistory, Redirect, Link } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,50 +14,16 @@ const Register = ({ setAuth, isAuthenticated }) => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const registerValidation = () => {
-    const errors = {};
-    const usernameRegex = RegExp(/^[a-zA-Z0-9]+$/);
-    let isValid = true;
-
-    if (!username || !username.trim()) {
-      isValid = false;
-      errors['username'] = 'Cannot be empty';
-    }
-
-    if (!usernameRegex.test(username)) {
-      isValid = false;
-      errors['username'] = 'Username only allows for alphanumeric characters';
-    }
-
-    if (username.length > 100) {
-      isValid = false;
-      errors['username'] = 'Username must be under 100 characters';
-    }
-
-    if (!password || !password.trim()) {
-      isValid = false;
-      errors['password'] = 'Cannot be empty';
-    }
-
-    if (password.length > 200) {
-      isValid = false;
-      errors['password'] = 'Password must be under 200 characters';
-    }
-
-    if (repeatPassword !== password) {
-      isValid = false;
-      errors['repeatPassword'] = 'Passwords must match';
-    }
-
-    setErrors(errors);
-
-    return isValid;
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (registerValidation()) {
+    const registerValidationResult = registerValidation(
+      username,
+      password,
+      repeatPassword
+    );
+
+    if (registerValidationResult.isValid) {
       try {
         await authService.register(username, password, repeatPassword);
         setAuth(true);
@@ -65,6 +32,8 @@ const Register = ({ setAuth, isAuthenticated }) => {
       } catch (err) {
         toast.error(err);
       }
+    } else {
+      setErrors(registerValidationResult.errors);
     }
   };
 

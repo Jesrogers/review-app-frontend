@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Login.module.scss';
 import PropTypes from 'prop-types';
+import { loginValidation } from '../../utils/validations';
 import { useHistory, Link, Redirect } from 'react-router-dom';
 import authService from '../../services/auth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,28 +13,12 @@ const Login = ({ setAuth, isAuthenticated }) => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  const loginValidation = () => {
-    const errors = {};
-    let isValid = true;
-
-    if (!username || !username.trim()) {
-      isValid = false;
-      errors['username'] = 'Cannot be empty';
-    }
-    if (!password || !password.trim()) {
-      isValid = false;
-      errors['password'] = 'Cannot be empty';
-    }
-
-    setErrors(errors);
-
-    return isValid;
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (loginValidation()) {
+    const loginValidationResult = loginValidation(username, password);
+
+    if (loginValidationResult.isValid) {
       try {
         await authService.login(username, password);
         setAuth(true);
@@ -42,6 +27,8 @@ const Login = ({ setAuth, isAuthenticated }) => {
       } catch (err) {
         toast.error(err);
       }
+    } else {
+      setErrors(loginValidationResult.errors);
     }
   };
 
@@ -109,7 +96,7 @@ const Login = ({ setAuth, isAuthenticated }) => {
 
 Login.propTypes = {
   setAuth: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired
-}
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default Login;
