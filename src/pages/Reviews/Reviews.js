@@ -6,16 +6,9 @@ import Review from '../../components/Review/Review';
 import ReviewSectionFilters from '../../components/ReviewSectionFilters/ReviewSectionFilters';
 import PropTypes from 'prop-types';
 
-const Reviews = ({
-  rowLayout,
-  reviews,
-  deleteReview,
-  handleRowLayoutChange,
-  handleCardLayoutChange,
-  isLoading,
-  isAuthenticated,
-}) => {
+const Reviews = ({ reviews, deleteReview, isLoading, isAuthenticated }) => {
   const [filterText, setFilterText] = useState('');
+  const [rowLayout, setRowLayout] = useState(false);
 
   let layoutClass;
 
@@ -26,6 +19,14 @@ const Reviews = ({
   } else {
     layoutClass = 'cards';
   }
+
+  const handleRowLayoutChange = () => {
+    setRowLayout(true);
+  };
+
+  const handleCardLayoutChange = () => {
+    setRowLayout(false);
+  };
 
   const handleFilterTextChange = (e) => {
     setFilterText(e.target.value);
@@ -87,7 +88,6 @@ const Reviews = ({
 };
 
 Reviews.propTypes = {
-  rowLayout: PropTypes.bool.isRequired,
   reviews: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
@@ -97,8 +97,6 @@ Reviews.propTypes = {
     })
   ).isRequired,
   deleteReview: PropTypes.func.isRequired,
-  handleRowLayoutChange: PropTypes.func.isRequired,
-  handleCardLayoutChange: PropTypes.func.isRequired,
   isLoading: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
 };

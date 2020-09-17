@@ -12,7 +12,6 @@ import reviewService from './services/reviews';
 
 const App = () => {
   const [reviews, setReviews] = useState([]);
-  const [rowLayout, setRowLayout] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -52,14 +51,6 @@ const App = () => {
     },
     [setIsAuthenticated]
   );
-
-  const handleRowLayoutChange = () => {
-    setRowLayout(true);
-  };
-
-  const handleCardLayoutChange = () => {
-    setRowLayout(false);
-  };
 
   const addReview = async (review) => {
     const newReview = await reviewService.createReview(review);
@@ -104,10 +95,7 @@ const App = () => {
           <Route path="/">
             <Reviews
               reviews={reviews}
-              rowLayout={rowLayout}
               deleteReview={deleteReview}
-              handleRowLayoutChange={handleRowLayoutChange}
-              handleCardLayoutChange={handleCardLayoutChange}
               isLoading={isLoading}
               isAuthenticated={isAuthenticated}
             />
