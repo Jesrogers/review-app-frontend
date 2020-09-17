@@ -58,4 +58,33 @@ const registerValidation = (username, password, repeatPassword) => {
   return result;
 };
 
-export { loginValidation, registerValidation };
+const reviewFormValidation = (title, description, rating) => {
+  let result = {
+    isValid: true,
+    errors: {},
+  };
+
+  if (!title.trim()) {
+    result.isValid = false;
+    result.errors['title'] = 'Cannot be empty';
+  }
+
+  if (title.length > 100) {
+    result.isValid = false;
+    result.errors['title'] = 'Title must be 100 characters or less';
+  }
+
+  if (description.length > 300) {
+    result.isValid = false;
+    result.errors['description'] = 'Description must be 300 characters or less';
+  }
+
+  if (!rating || rating < 1 || rating > 5) {
+    result.isValid = false;
+    result.errors['rating'] = 'Select a valid rating';
+  }
+
+  return result;
+};
+
+export { loginValidation, registerValidation, reviewFormValidation };

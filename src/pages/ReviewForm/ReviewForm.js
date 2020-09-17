@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './ReviewForm.module.scss';
 import PropTypes from 'prop-types';
+import { reviewFormValidation } from '../../utils/validations';
 import { useParams, withRouter } from 'react-router-dom';
 import reviewService from '../../services/reviews';
 import { ToastContainer, toast } from 'react-toastify';
@@ -38,35 +39,6 @@ const ReviewForm = ({ addReview, updateReview, history }) => {
     }
   }, [id]);
 
-  const formValidation = () => {
-    const errors = {};
-    let isValid = true;
-
-    if (!title.trim()) {
-      isValid = false;
-      errors['title'] = 'Cannot be empty';
-    }
-
-    if (title.length > 100) {
-      isValid = false;
-      errors['title'] = 'Title must be 100 characters or less';
-    }
-
-    if (description.length > 300) {
-      isValid = false;
-      errors['description'] = 'Description must be 300 characters or less';
-    }
-
-    if (!rating || rating < 1 || rating > 5) {
-      isValid = false;
-      errors['rating'] = 'Select a valid rating';
-    }
-
-    setErrors(errors);
-
-    return isValid;
-  };
-
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -76,7 +48,13 @@ const ReviewForm = ({ addReview, updateReview, history }) => {
       rating: rating,
     };
 
-    if (formValidation()) {
+    const reviewValidationResult = reviewFormValidation(
+      title,
+      description,
+      rating
+    );
+
+    if (reviewValidationResult.isValid) {
       try {
         if (id) {
           await updateReview(Number(id), newReview);
@@ -88,6 +66,8 @@ const ReviewForm = ({ addReview, updateReview, history }) => {
       } catch (err) {
         toast.error(err);
       }
+    } else {
+      setErrors(reviewValidationResult.errors);
     }
   };
 
