@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './FormInput.module.scss';
+import PropTypes from 'prop-types';
 
 const FormInput = ({
   label,
@@ -25,6 +26,15 @@ const FormInput = ({
       {errors[label] ? <p className={styles.error}>{errors[label]}</p> : null}
     </div>
   );
+};
+
+FormInput.propTypes = {
+  label: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  required: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+  setValue: PropTypes.func.isRequired,
+  errors: PropTypes.object,
 };
 
 export default FormInput;
