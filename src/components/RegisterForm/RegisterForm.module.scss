@@ -1,0 +1,11 @@
+.registerForm {
+    width: 100%;
+    max-width: 37.5rem;
+    box-shadow: 0 0.3em 0.8em rgba(0, 0, 0, 0.25);
+
+    &__content {
+        padding: 1.25em;
+        margin-bottom: 0;
+        font-size: 1.25rem;
+    }
+}
