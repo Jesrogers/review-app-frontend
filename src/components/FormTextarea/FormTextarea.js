@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './FormInput.module.scss';
+import styles from './FormTextarea.module.scss';
 import PropTypes from 'prop-types';
 
-const FormInput = ({
+const FormTextarea = ({
   label,
   id = label,
   type = 'text',
@@ -13,13 +13,13 @@ const FormInput = ({
   maxLength,
 }) => {
   return (
-    <div className={styles.formInput__container}>
-      <label htmlFor={id} className={styles.formInput__label}>
+    <div className={styles.FormTextarea}>
+      <label htmlFor={id} className={styles.formTextarea__label}>
         {label}
       </label>
-      <input
+      <textarea
         id={id}
-        className={styles.formInput__input}
+        className={styles.formTextarea__textarea}
         type={type}
         required={required}
         maxLength={maxLength}
@@ -31,7 +31,7 @@ const FormInput = ({
   );
 };
 
-FormInput.propTypes = {
+FormTextarea.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string,
   type: PropTypes.string,
@@ -42,4 +42,4 @@ FormInput.propTypes = {
   errors: PropTypes.object,
 };
 
-export default FormInput;
+export default FormTextarea;

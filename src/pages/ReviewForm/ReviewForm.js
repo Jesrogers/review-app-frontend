@@ -6,6 +6,9 @@ import { useParams, withRouter } from 'react-router-dom';
 import reviewService from '../../services/reviews';
 import { ToastContainer, toast } from 'react-toastify';
 import Loader from '../../components/Loader/Loader';
+import FormHeader from '../../components/FormHeader/FormHeader';
+import FormInput from '../../components/FormInput/FormInput';
+import FormTextarea from '../../components/FormTextarea/FormTextarea';
 import StarRating from '../../components/StarRating/StarRating';
 
 const ReviewForm = ({ addReview, updateReview, history }) => {
@@ -75,88 +78,47 @@ const ReviewForm = ({ addReview, updateReview, history }) => {
     setRating(rating);
   };
 
-  if (isLoading) {
-    return (
-      <section className={styles.reviewFormSection}>
-        <ToastContainer
-          position="top-center"
-          autoClose={2500}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-        />
-        <div className={styles.reviewFormSection__content}>
-          <Loader />
-        </div>
-      </section>
-    );
-  }
-
   return (
     <section className={styles.reviewFormSection}>
-      <ToastContainer
-        position="top-center"
-        autoClose={2500}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ToastContainer position="top-center" autoClose={2500} limit={3} />
       <div className={styles.reviewFormSection__content}>
-        <form className={styles.reviewFormSection__form} onSubmit={onSubmit}>
-          <header>
-            <h2>{id ? 'Edit Review' : 'Add Review'}</h2>
-          </header>
-          <div className={styles.reviewFormSection__formContent}>
-            <div>
-              <label htmlFor="title">Title</label>
-              <input
-                id="title"
-                type="text"
-                required
-                maxLength="100"
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <form className={styles.reviewFormSection__form} onSubmit={onSubmit}>
+            <FormHeader title={id ? 'Edit Review' : 'Add Review'} />
+            <div className={styles.reviewFormSection__formContent}>
+              <FormInput
+                label="title"
                 value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                setValue={setTitle}
+                errors={errors}
+                maxLength={100}
               />
-              {errors.title ? (
-                <p className={styles.error}>{errors.title}</p>
-              ) : null}
-            </div>
-            <div>
-              <label htmlFor="description">Description</label>
-              <textarea
-                id="description"
-                maxLength="300"
+              <FormTextarea
+                label="description"
+                maxLength={300}
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-              {errors.description ? (
-                <p className={styles.error}>{errors.description}</p>
-              ) : null}
-            </div>
-            <div>
-              <StarRating
-                editMode={true}
-                rating={rating}
-                updateReviewRating={handleRatingClick}
+                setValue={setDescription}
+                errors={errors}
               />
-              {errors.rating ? (
-                <p className={styles.error}>{errors.rating}</p>
-              ) : null}
-            </div>
+              <div>
+                <StarRating
+                  editMode={true}
+                  rating={rating}
+                  updateReviewRating={handleRatingClick}
+                />
+                {errors.rating ? (
+                  <p className={styles.error}>{errors.rating}</p>
+                ) : null}
+              </div>
 
-            <button type="submit" className={styles.submitBtn}>
-              Submit
-            </button>
-          </div>
-        </form>
+              <button type="submit" className={styles.submitBtn}>
+                Submit
+              </button>
+            </div>
+          </form>
+        )}
       </div>
     </section>
   );
