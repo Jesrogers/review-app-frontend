@@ -6,8 +6,7 @@ import PropTypes from 'prop-types';
 
 const ReviewSectionFilters = ({
   rowLayout,
-  onRowLayoutChange,
-  onCardLayoutChange,
+  setRowLayout,
   filterText,
   onFilterTextChange,
 }) => {
@@ -28,13 +27,13 @@ const ReviewSectionFilters = ({
       <div className={styles.reviewSectionFilters__buttonContainer}>
         <button
           className={rowLayout ? null : styles.active}
-          onClick={onCardLayoutChange}
+          onClick={() => setRowLayout(false)}
         >
           <FaRegWindowMaximize />
         </button>
         <button
           className={rowLayout ? styles.active : null}
-          onClick={onRowLayoutChange}
+          onClick={() => setRowLayout(true)}
         >
           <FaBars />
         </button>
@@ -45,8 +44,7 @@ const ReviewSectionFilters = ({
 
 ReviewSectionFilters.propTypes = {
   rowLayout: PropTypes.bool,
-  onRowLayoutChange: PropTypes.func.isRequired,
-  onCardLayoutChange: PropTypes.func.isRequired,
+  setRowLayout: PropTypes.func.isRequired,
   filterText: PropTypes.string,
   onFilterTextChange: PropTypes.func.isRequired,
 };

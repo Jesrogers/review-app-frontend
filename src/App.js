@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Reviews from './pages/Reviews/Reviews';
+import Home from './pages/Home/Home';
 import ReviewForm from './pages/ReviewForm/ReviewForm';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
@@ -93,7 +93,7 @@ const App = () => {
             <Logout setAuth={setAuth} isAuthenticated={isAuthenticated} />
           </Route>
           <Route path="/">
-            <Reviews
+            <Home
               reviews={reviews}
               deleteReview={deleteReview}
               isLoading={isLoading}
