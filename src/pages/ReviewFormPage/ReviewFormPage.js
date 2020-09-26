@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './ReviewForm.module.scss';
+import styles from './ReviewFormPage.module.scss';
 import PropTypes from 'prop-types';
 import { reviewFormValidation } from '../../utils/validations';
 import { useParams, withRouter } from 'react-router-dom';
@@ -11,7 +11,7 @@ import FormInput from '../../components/FormInput/FormInput';
 import FormTextarea from '../../components/FormTextarea/FormTextarea';
 import StarRating from '../../components/StarRating/StarRating';
 
-const ReviewForm = ({ addReview, updateReview, history }) => {
+const ReviewFormPage = ({ addReview, updateReview, history }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [isLoading, setIsLoading] = useState(true);
@@ -124,10 +124,10 @@ const ReviewForm = ({ addReview, updateReview, history }) => {
   );
 };
 
-ReviewForm.propTypes = {
+ReviewFormPage.propTypes = {
   addReview: PropTypes.func,
   updateReview: PropTypes.func,
   history: PropTypes.object,
 };
 
-export default withRouter(ReviewForm);
+export default withRouter(ReviewFormPage);

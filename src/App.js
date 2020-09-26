@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Home from './pages/Home/Home';
-import ReviewForm from './pages/ReviewForm/ReviewForm';
+import ReviewFormPage from './pages/ReviewFormPage/ReviewFormPage';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Logout from './pages/Logout/Logout';
@@ -78,10 +78,10 @@ const App = () => {
       <main>
         <Switch>
           <PrivateRoute path="/review" isAuthenticated={isAuthenticated} exact>
-            <ReviewForm addReview={addReview} />
+            <ReviewFormPage addReview={addReview} />
           </PrivateRoute>
           <PrivateRoute path="/review/:id" isAuthenticated={isAuthenticated}>
-            <ReviewForm updateReview={updateReview} />
+            <ReviewFormPage updateReview={updateReview} />
           </PrivateRoute>
           <Route path="/register">
             <Register setAuth={setAuth} isAuthenticated={isAuthenticated} />
