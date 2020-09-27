@@ -24,7 +24,7 @@ const StarRating = ({
   const starArray = new Array(scale).fill();
 
   return (
-    <div className="starContainer">
+    <div className={styles.starRating}>
       {starArray.map((star, i) => {
         const ratingValue = i + 1;
 

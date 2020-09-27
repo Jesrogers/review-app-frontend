@@ -1,0 +1,41 @@
+.reviewForm {
+    width: 100%;
+    max-width: 37.5rem;
+    box-shadow: 0 0.3em 0.8em rgba(0, 0, 0, 0.25);
+
+    &__content {
+        padding: 1.25em;
+        margin-bottom: 0;
+        font-size: 1.25rem;
+    }
+
+    &__starContainer {
+        position: relative;
+    }
+
+    .error {
+        position: absolute;
+        bottom: -1.6rem;
+        left: 0;
+        color: red;
+        font-size: 0.875rem;
+    }
+
+    .submitBtn {
+        padding: 0.6em;
+        font-size: 1.25rem;
+        color: var(--light);
+        border: 0;
+        background: var(--m1);
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover,
+        &:focus,
+        &:active {
+            color: var(--dark);
+            background: var(--m2);
+        }
+    }
+
+}

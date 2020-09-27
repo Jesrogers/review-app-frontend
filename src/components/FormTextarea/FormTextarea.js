@@ -13,7 +13,7 @@ const FormTextarea = ({
   maxLength,
 }) => {
   return (
-    <div className={styles.FormTextarea}>
+    <div className={styles.formTextarea}>
       <label htmlFor={id} className={styles.formTextarea__label}>
         {label}
       </label>
