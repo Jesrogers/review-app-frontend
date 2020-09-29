@@ -12,30 +12,12 @@
     &__starContainer {
         position: relative;
     }
+}
 
-    .error {
-        position: absolute;
-        bottom: -1.6rem;
-        left: 0;
-        color: red;
-        font-size: 0.875rem;
-    }
+.submitBtn {
+    composes: button from '../../common.module.scss';
+}
 
-    .submitBtn {
-        padding: 0.6em;
-        font-size: 1.25rem;
-        color: var(--light);
-        border: 0;
-        background: var(--m1);
-        cursor: pointer;
-        transition: all .3s;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--dark);
-            background: var(--m2);
-        }
-    }
-
+.error {
+    composes: error from '../../common.module.scss';
 }

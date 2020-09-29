@@ -17,21 +17,8 @@
             padding: 0.2em 0.4em;
         }
     }
+}
 
-    .submitBtn {
-        padding: 0.6em;
-        font-size: 1.25rem;
-        color: var(--light);
-        border: 0;
-        background: var(--m1);
-        cursor: pointer;
-        transition: all .3s;
-
-        &:hover,
-        &:focus,
-        &:active {
-            color: var(--dark);
-            background: var(--m2);
-        }
-    }
+.submitBtn {
+    composes: button from '../../common.module.scss';
 }

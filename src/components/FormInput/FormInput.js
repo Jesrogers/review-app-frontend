@@ -13,7 +13,7 @@ const FormInput = ({
   maxLength,
 }) => {
   return (
-    <div className={styles.formInput__container}>
+    <div className={styles.formInput}>
       <label htmlFor={id} className={styles.formInput__label}>
         {label}
       </label>
